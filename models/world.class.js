@@ -9,7 +9,7 @@ class World {
     keyboard;
     cameraX = 0;
     statusBar = new StatusBar();
-    bottles = new Bottles();
+    bottlesBar = new BottlesBar();
     coins = new Coins();
     throwableObjects = [];
   
@@ -90,7 +90,7 @@ class World {
       this.ctx.translate(-this.cameraX, 0);
       // ----- Space for fixd Objects -----
       this.addToMap(this.statusBar);
-      this.addToMap(this.bottles);
+      this.addToMap(this.bottlesBar);
       this.addToMap(this.coins);
       this.ctx.translate(this.cameraX, 0);
         

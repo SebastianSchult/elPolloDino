@@ -1,4 +1,4 @@
-class Bottles extends DrawableObject {
+class BottlesBar extends DrawableObject {
     percentage = 0;
 
     IMAGES = [
