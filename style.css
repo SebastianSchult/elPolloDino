@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'sadLaugh';
+    src: url(./fonts/Sad\ Kropotkin\ Laugh.ttf)  format('truetype');
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}   
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('img/dinoworld/background.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.d-none {
+    display: none;
+}
+
+h1 {
+    white-space: nowrap;
+    position: absolute;
+    top: calc(10% - 248px); /* 50% der Höhe des Fensters minus halbe Höhe des Canvas (240px) minus 8px Abstand */
+    transform: translateY(-70%);
+    margin: 0;
+    font-size: 64px;
+    color: white;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    padding: 64px;
+}
+
+canvas {
+    background-color: black;
+    border: 8px solid #ffffff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: 60%;
+    transform: translateY(-90%);
+}
+
+#startButton {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+    padding: 12px 24px;
+    font-size: 32px;
+    color: #fff;
+    background-color: #007bff;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+    font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
+    width: 128px;
+}
+
+#helpButton {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+    padding: 12px 24px;
+    font-size: 32px;
+    color: #fff;
+    background-color: #007bff;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+    font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
+    width: 128px;
+}
+
+#fullscreenButton {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+    padding: 12px 24px;
+    font-size: 32px;
+    color: #fff;
+    background-color: #007bff;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+    font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
+    width: 128px;
+}
+
+#startButton:hover {
+    background-color: #0056b3;
+}
+
+#helpButton:hover {
+    background-color: #0056b3;
+}
+
+#fullscreenButton:hover {
+    background-color: #0056b3;
+}
+
+/* Smartphones ----- */
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+/* Smartphones ----- */
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100%;
+    }
+}

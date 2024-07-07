@@ -1,0 +1,136 @@
+class Character extends MovableObject {
+  height = 180;
+  width = 130;
+  x = 230;
+  y = 255;
+  speed = 10;
+
+  IMAGES_IDLE = [
+    "img/dinoworld/Hero/Idle (1).png",
+    "img/dinoworld/Hero/Idle (2).png",
+    "img/dinoworld/Hero/Idle (3).png",
+    "img/dinoworld/Hero/Idle (4).png",
+    "img/dinoworld/Hero/Idle (5).png",
+    "img/dinoworld/Hero/Idle (6).png",
+    "img/dinoworld/Hero/Idle (7).png",
+    "img/dinoworld/Hero/Idle (8).png",
+    "img/dinoworld/Hero/Idle (9).png",
+    "img/dinoworld/Hero/Idle (10).png",
+  ];
+
+  IMAGES_WALKING = [
+    "img/dinoworld/Hero/Walk1.png",
+    "img/dinoworld/Hero/Walk (2).png",
+    "img/dinoworld/Hero/Walk (3).png",
+    "img/dinoworld/Hero/Walk (4).png",
+    "img/dinoworld/Hero/Walk (5).png",
+    "img/dinoworld/Hero/Walk (6).png",
+    "img/dinoworld/Hero/Walk (7).png",
+    "img/dinoworld/Hero/Walk (8).png",
+    "img/dinoworld/Hero/Walk (9).png",
+    "img/dinoworld/Hero/Walk (10).png",
+  ];
+
+  IMAGES_JUMPING = [
+    "img/dinoworld/Hero/Jump (1).png",
+    "img/dinoworld/Hero/Jump (2).png",
+    "img/dinoworld/Hero/Jump (3).png",
+    "img/dinoworld/Hero/Jump (4).png",
+    "img/dinoworld/Hero/Jump (10).png",
+    "img/dinoworld/Hero/Jump (6).png",
+    "img/dinoworld/Hero/Jump (7).png",
+    "img/dinoworld/Hero/Jump (8).png",
+    "img/dinoworld/Hero/Jump (9).png",
+    "img/dinoworld/Hero/Jump (10).png",
+  ];
+
+  IMAGES_DEAD = [
+    "img/dinoworld/Hero/Dead (1).png",
+    "img/dinoworld/Hero/Dead (2).png",
+    "img/dinoworld/Hero/Dead (3).png",
+    "img/dinoworld/Hero/Dead (4).png",
+    "img/dinoworld/Hero/Dead (5).png",
+    "img/dinoworld/Hero/Dead (6).png",
+    "img/dinoworld/Hero/Dead (7).png",
+    "img/dinoworld/Hero/Dead (8).png",
+    "img/dinoworld/Hero/Dead (9).png",
+    "img/dinoworld/Hero/Dead (10).png",
+  ];
+
+  IMAGES_HURT = [
+    "img/dinoworld/Hero/Hurt (1).png",
+    "img/dinoworld/Hero/Hurt (2).png",
+    "img/dinoworld/Hero/Hurt (3).png",
+    "img/dinoworld/Hero/Hurt (4).png",
+    "img/dinoworld/Hero/Hurt (5).png",
+    "img/dinoworld/Hero/Hurt (6).png",
+    "img/dinoworld/Hero/Hurt (7).png",
+    "img/dinoworld/Hero/Hurt (8).png",
+    "img/dinoworld/Hero/Hurt (9).png",
+    "img/dinoworld/Hero/Hurt (10).png",
+  ];
+
+  IMAGES_THROW = [
+    "img/dinoworld/Hero/Throw (1).png",
+    "img/dinoworld/Hero/Throw (2).png",
+    "img/dinoworld/Hero/Throw (3).png",
+    "img/dinoworld/Hero/Throw (4).png",
+    "img/dinoworld/Hero/Throw (5).png",
+    "img/dinoworld/Hero/Throw (6).png",
+    "img/dinoworld/Hero/Throw (7).png",
+    "img/dinoworld/Hero/Throw (8).png",
+    "img/dinoworld/Hero/Throw (9).png",
+    "img/dinoworld/Hero/Throw (10).png",
+  ];
+
+  world;
+  walking_sound = new Audio('audio/running.mp3') ;
+
+  constructor() {
+    super().loadImage("img/dinoworld/Hero/Idle (1).png");
+    this.loadImages(this.IMAGES_WALKING);
+    this.loadImages(this.IMAGES_JUMPING);
+    this.loadImages(this.IMAGES_HURT);
+    this.loadImages(this.IMAGES_DEAD);
+    this.loadImages(this.IMAGES_THROW);
+    this.applyGravity();
+    this.animate();
+  }
+
+  animate() {
+    setInterval(() => {
+        this.walking_sound.pause();
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            this.moveRight();
+            this.otherDirection = false;
+            this.walking_sound.play();
+        }
+
+        if (this.world.keyboard.LEFT && this.x > -360) {
+            this.moveLeft();
+            this.otherDirection = true;
+            this.walking_sound.play();
+        }
+        
+        if (this.world.keyboard.UP && !this.isAboveGround()) {
+            this.jump();
+        }
+
+        this.world.cameraX = -this.x + 100;
+    }, 1000 / 60);
+
+    setInterval(() => {
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+        } else if (this.isHurt()) { 
+            this.playAnimation(this.IMAGES_HURT);
+        } else if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMPING);
+        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.IMAGES_WALKING);
+        } else if (this.world.keyboard.D) {
+            this.playAnimation(this.IMAGES_THROW);
+        }
+    }, 50);
+  }
+}
