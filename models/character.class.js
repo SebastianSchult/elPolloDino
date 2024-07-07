@@ -4,6 +4,7 @@ class Character extends MovableObject {
   x = 230;
   y = 255;
   speed = 10;
+  lastMoveTime = Date.now();
 
   IMAGES_IDLE = [
     "img/dinoworld/Hero/Idle (1).png",
@@ -16,6 +17,19 @@ class Character extends MovableObject {
     "img/dinoworld/Hero/Idle (8).png",
     "img/dinoworld/Hero/Idle (9).png",
     "img/dinoworld/Hero/Idle (10).png",
+  ];
+
+  IMAGES_SLEEPING = [
+    "img/dinoworld/Hero/Crouch (1).png",
+    "img/dinoworld/Hero/Crouch (2).png",
+    "img/dinoworld/Hero/Crouch (3).png",
+    "img/dinoworld/Hero/Crouch (4).png",
+    "img/dinoworld/Hero/Crouch (5).png",
+    "img/dinoworld/Hero/Crouch (6).png",
+    "img/dinoworld/Hero/Crouch (7).png",
+    "img/dinoworld/Hero/Crouch (8).png",
+    "img/dinoworld/Hero/Crouch (9).png",
+    "img/dinoworld/Hero/Crouch (10).png",
   ];
 
   IMAGES_WALKING = [
@@ -94,6 +108,7 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_THROW);
     this.loadImages(this.IMAGES_IDLE);
+    this.loadImages(this.IMAGES_SLEEPING);
     this.applyGravity();
     this.animate();
   }
@@ -121,17 +136,26 @@ class Character extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
+        const lastMove = Date.now() - this.lastMoveTime;
+        const sleepTime = lastMove >= 3500;
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
+        this.lastMoveTime = Date.now();
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
+        this.lastMoveTime = Date.now();
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         this.playAnimation(this.IMAGES_WALKING);
+        this.lastMoveTime = Date.now();
       } else if (this.world.keyboard.D) {
         this.playAnimation(this.IMAGES_THROW);
-      } else {
+        this.lastMoveTime = Date.now();
+      } else if (sleepTime) {
+        this.playAnimation(this.IMAGES_SLEEPING);
+      }
+      else {
         this.playAnimation(this.IMAGES_IDLE);
       }
     }, 50);
