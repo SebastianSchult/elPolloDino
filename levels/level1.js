@@ -35,6 +35,17 @@ function initLevel() {
         new Tropeognathus(),
         new Tropeognathus(),
         new Tropeognathus() 
+        ],
+        [
+        new Bottles(),
+        new Bottles(),
+        new Bottles(),
+        new Bottles(),
+        new Bottles(),
+        new Bottles(),
+        new Bottles(),
+        new Bottles(),
+        new Bottles()
         ]
         );
         init();

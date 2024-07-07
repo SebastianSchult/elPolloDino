@@ -3,6 +3,7 @@ class World {
     level = level1;
     enemies = level1.enemies; 
     clouds = level1.clouds;
+    bottles = level1.bottles;
     backgroundObjects = [];
     canvas;
     ctx;
@@ -95,6 +96,7 @@ class World {
       this.ctx.translate(this.cameraX, 0);
         
       this.addObjectsToMap(this.throwableObjects);
+      this.addObjectsToMap(this.bottles);
       this.addToMap(this.character);
       
       this.addObjectsToMap(this.level.enemies);
