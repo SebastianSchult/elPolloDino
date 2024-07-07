@@ -1,4 +1,4 @@
-class Coins extends DrawableObject {
+class CoinsBar extends DrawableObject {
     percentage = 0;
 
     IMAGES = [
