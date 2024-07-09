@@ -70,15 +70,19 @@ canvas {
     align-items: center;
     margin: 16px;
     padding: 12px 24px;
-    font-size: 32px;
-    color: #fff;
-    background-color: #007bff;
-    border: 2px solid white;
-    border-radius: 5px;
     cursor: pointer;
     z-index: 1;
-    font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
-    width: 128px;
+    background: transparent;
+    border: none;
+    background-image: url("img/buttons/Play (1).png" );
+    background-size: cover;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+}
+
+#startButton:hover {
+    background-image: url("img/buttons/Play (2).png");
 }
 
 #helpButton {
@@ -87,16 +91,22 @@ canvas {
     align-items: center;
     margin: 16px;
     padding: 12px 24px;
-    font-size: 32px;
-    color: #fff;
-    background-color: #007bff;
-    border: 2px solid white;
-    border-radius: 5px;
     cursor: pointer;
     z-index: 1;
-    font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
-    width: 128px;
+    background: transparent;
+    border: none;
+    background-image: url("img/buttons/Help (1).png" );
+    background-size: cover;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+
 }
+
+#helpButton:hover {
+    background-image: url("img/buttons/Help (2).png");
+}
+
 
 #fullscreenButton {
     flex-direction: column;
@@ -104,27 +114,23 @@ canvas {
     align-items: center;
     margin: 16px;
     padding: 12px 24px;
-    font-size: 32px;
-    color: #fff;
-    background-color: #007bff;
-    border: 2px solid white;
-    border-radius: 5px;
     cursor: pointer;
     z-index: 1;
-    font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
-    width: 128px;
+    background: transparent;
+    border: none;
+    background-image: url("img/buttons/blank/Blank (1).png" );
+    background-size: cover;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
 }
 
-#startButton:hover {
-    background-color: #0056b3;
-}
 
-#helpButton:hover {
-    background-color: #0056b3;
-}
+
+
 
 #fullscreenButton:hover {
-    background-color: #0056b3;
+    background-image: url("img/buttons/blank/Blank (2).png");
 }
 
 /* Smartphones ----- */

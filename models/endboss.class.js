@@ -67,6 +67,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         
         this.x = 3000;
+        this.speed  = 5;
         this.animate();
 
     }
@@ -82,6 +83,7 @@ class Endboss extends MovableObject {
             } else if ( i >= 10 && i < 20) {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.otherDirection = true;
+                this.moveLeft();
             } else if (i >= 20 && i < 30) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 this.otherDirection = true;
