@@ -125,12 +125,36 @@ canvas {
     background-repeat: no-repeat;
 }
 
-
-
-
-
 #fullscreenButton:hover {
     background-image: url("img/buttons/blank/Blank (2).png");
+}
+
+.game-Buttons {
+    display: flex;
+    z-index: 1;
+    position: absolute;
+    justify-content: space-between;
+    right: 0;
+    left: 0;
+    bottom: 5%;
+    margin: 0 32px;
+   
+}
+
+.buttonContainer {
+    display: flex;
+    height: 64px;
+    width: 64px; 
+    cursor: pointer;
+}
+.buttonSmallContainer {
+    display: flex;
+    padding-right: 16px;
+}
+
+.buttonContainer img {
+    height: 64px;
+    width: 64px;
 }
 
 /* Smartphones ----- */

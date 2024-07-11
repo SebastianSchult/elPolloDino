@@ -30,14 +30,34 @@
 
 </head>
 <body onload="startScreen()">
+    <div id="gameButtons" class="game-Buttons">
+        <div class="buttonSmallContainer">
+            <div id="btnLeft" class="buttonContainer">
+                <img class="mobileGameButtonImageLeft" src="img/buttons/LeftArrow (1).png" alt="LEFT">
+            </div>
+            <div id="btnRight" class="buttonContainer">
+                <img class="mobileGameButtonImageRight" src="img/buttons/RightArrow (1).png" alt="RIGHT">
+            </div>
+        </div>
+        <div class="buttonSmallContainer">
+            <div id="btnJump" class="buttonContainer">
+                <img class="mobileGameButtonImageJump" src="img/buttons/Up (1).png" alt="JUMP">
+            </div>
+            <div id="btnThrow" class="buttonContainer">
+                <img class="mobileGameButtonImageThrow" style="transform: rotate(-45deg)" src="img/buttons/RightArrow (1).png" alt="THROW">
+            </div>
+        </div>
+    </div>
     <div class="container">
         <h1>El Loco Dino</h1>
+       
         <canvas id="canvas" width="720" height="480"></canvas>
         <div class="buttons">
         <button id="startButton"  onclick="initLevel();">
         </button>
         <button id="helpButton" onclick=""></button>
         <button id="fullscreenButton" onclick=""></button>
+        
     </div>
 
     </div>
