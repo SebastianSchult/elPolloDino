@@ -4,7 +4,6 @@ class Level {
     tropeognathus;
     bottles;
     coins;
-
     level_end_x = 2900;
 
     constructor(enemies, clouds, tropeognathus, bottles, coins) {

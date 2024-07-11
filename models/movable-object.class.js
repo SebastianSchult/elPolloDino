@@ -6,6 +6,13 @@ class MovableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
 
+  offset = {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  };
+
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -71,4 +78,11 @@ isHurt() {
   jump() {
     this.speedY = 22;
   }
+
+  playedAnimationCounter() {
+    return this.playedAnimation < 9;
+  }
 }
+
+  
+

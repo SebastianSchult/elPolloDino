@@ -5,6 +5,10 @@ class Character extends MovableObject {
   y = 255;
   speed = 10;
   lastMoveTime = Date.now();
+  world;
+  playedAnimation = 0;
+  walking_sound = new Audio("audio/running.mp3");
+  jumping_sound = new Audio("audio/jump.mp3");
 
   IMAGES_IDLE = [
     "img/dinoworld/Hero/Idle (1).png",
@@ -97,8 +101,7 @@ class Character extends MovableObject {
     "img/dinoworld/Hero/Throw (10).png",
   ];
 
-  world;
-  walking_sound = new Audio("audio/running.mp3");
+  
 
   constructor() {
     super().loadImage("img/dinoworld/Hero/Idle (1).png");
@@ -130,6 +133,7 @@ class Character extends MovableObject {
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
         this.jump();
+        this.jumping_sound.play();
       }
 
       this.world.cameraX = -this.x + 100;
@@ -139,7 +143,9 @@ class Character extends MovableObject {
         const lastMove = Date.now() - this.lastMoveTime;
         const sleepTime = lastMove >= 3500;
       if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
+        if (this.playedAnimationCounter()) {
+          this.playDeathAnimation();
+        }
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.lastMoveTime = Date.now();
@@ -159,5 +165,10 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_IDLE);
       }
     }, 50);
+  }
+
+  playDeathAnimation() {
+    this.playAnimation(this.IMAGES_DEAD);
+    this.playedAnimation++;
   }
 }
