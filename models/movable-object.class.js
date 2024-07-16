@@ -7,7 +7,6 @@ class MovableObject extends DrawableObject {
   lastHit = 0;
   offsetX = 50;
   offsetY = 0;
-  
 
   applyGravity() {
     setInterval(() => {
@@ -22,17 +21,18 @@ class MovableObject extends DrawableObject {
     if (this instanceof ThrowableObject) {
       return true;
     } else {
-        return this.y < 249;
+      return this.y < 249;
     }
   }
 
-
   isColliding(mo) {
-    return (this.x + this.width - this.offsetX) >= mo.x &&
-            this.x <= (mo.x + mo.width - this.offsetX) &&
-            (this.y + this.offsetY + this.height) >= mo.y &&
-            (this.y + this.offsetY + 125) <= (mo.y + mo.height);
-}
+    return (
+      this.x + this.width - this.offsetX >= mo.x &&
+      this.x <= mo.x + mo.width - this.offsetX &&
+      this.y + this.offsetY + this.height >= mo.y &&
+      this.y + this.offsetY + 125 <= mo.y + mo.height
+    );
+  }
 
   hit() {
     this.energy -= 5;
@@ -41,19 +41,19 @@ class MovableObject extends DrawableObject {
       this.energy = 0;
     } else {
       this.lastHit = new Date().getTime();
-  } }
+    }
+  }
 
-isHurt() {
-  let timepassed = new Date().getTime() - this.lastHit;
-  timepassed = timepassed / 1000;
-  return timepassed < 0.5;
-}
+  isHurt() {
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
+    return timepassed < 0.5;
+  }
 
   isDead() {
     return this.energy <= 0;
   }
 
-  
   playAnimation(images) {
     let i = this.currentImage % images.length;
     let path = images[i];
@@ -77,6 +77,3 @@ isHurt() {
     return this.playedAnimation < 9;
   }
 }
-
-  
-
