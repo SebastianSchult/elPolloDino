@@ -75,7 +75,7 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-        setStoppableInterval(() => this.animateEndboss(), 100);
+        setStoppableInterval(() => this.animateEndboss(), 200);
         setStoppableInterval(() => this.moveEndboss(), 1000 / 60);
        }
 
@@ -107,7 +107,7 @@ class Endboss extends MovableObject {
     
 
     moveEndboss() {
-        if ((world.level.endboss[0].x - world.character.x) < 550) {
+        if ((world.level.endboss[0].x - world.character.x) < 500) {
             this.moveLeft(false);
         } 
     }
