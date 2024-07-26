@@ -3,7 +3,9 @@ class Endboss extends MovableObject {
     height = 350;
     width = 450;
     y = 105;
+    playedAnimation = 0;
     hadFirstContact = false;
+    roar_sound = new Audio("audio/endboss_roarr.mp3");
     
 
     IMAGES_IDLE = [
@@ -73,10 +75,13 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-       let i = 0;
+        setStoppableInterval(() => this.animateEndboss(), 100);
+        setStoppableInterval(() => this.moveEndboss(), 1000 /60);
+       }
 
-        setInterval(() => {
 
+    animateEndboss() {
+        let i = 0;
             if (i < 10) {
             this.playAnimation(this.IMAGES_IDLE);
             this.otherDirection = true;
@@ -87,6 +92,7 @@ class Endboss extends MovableObject {
             } else if (i >= 20 && i < 30) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 this.otherDirection = true;
+                this.roar_sound.play();
                 } else { ( i = 30)
                     i = 0;
                 }
@@ -95,6 +101,15 @@ class Endboss extends MovableObject {
                 i = 0;
                 this.hadFirstContact = true;
             }
-        }, 200);
+            this.playedAnimation = 0;
+        }
+        
+    
+
+    moveEndboss() {
+        if ((world.level.endboss[0].x - world.character.x) < 550) {
+            this.moveLeft(false);
+        } 
     }
+
 }

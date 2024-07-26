@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard;
+let intervalIds = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     keyboard = new Keyboard();
@@ -76,3 +77,7 @@ function startScreen() {
     img.src = 'img/dino_background/2/background.png';
 }
     
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
+}
