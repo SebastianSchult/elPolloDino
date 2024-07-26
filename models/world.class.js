@@ -1,10 +1,6 @@
 class World {
     character = new Character();
     level = level1;
-    enemies = level1.enemies; 
-    clouds = level1.clouds;
-    bottles = level1.bottles;
-    coins = level1.coins;
     backgroundObjects = [];
     canvas;
     ctx;
@@ -99,16 +95,19 @@ class World {
       this.ctx.translate(this.cameraX, 0);
         
       this.addObjectsToMap(this.throwableObjects);
-      this.addObjectsToMap(this.bottles);
-      this.addObjectsToMap(this.coins);
+      
       this.addToMap(this.character);
+
       
       this.addObjectsToMap(this.level.enemies);
+      this.addObjectsToMap(this.level.endboss);
+      this.addObjectsToMap(this.level.bottles);
+      this.addObjectsToMap(this.level.coins);
       this.ctx.translate(-this.cameraX, 0);
   
       let self = this;
       requestAnimationFrame(function () {
-        self.draw();
+      self.draw();
       });
     }
   

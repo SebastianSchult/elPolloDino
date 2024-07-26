@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
     height = 350;
     width = 450;
     y = 105;
-    playedAnimation = 0;
+    x = 3000;
     hadFirstContact = false;
     roar_sound = new Audio("audio/endboss_roarr.mp3");
     
@@ -68,7 +68,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DEAD);
         
-        this.x = 3000;
+    
         this.speed  = 10;
         this.animate();
 
@@ -76,7 +76,7 @@ class Endboss extends MovableObject {
 
     animate() {
         setStoppableInterval(() => this.animateEndboss(), 100);
-        setStoppableInterval(() => this.moveEndboss(), 1000 /60);
+        setStoppableInterval(() => this.moveEndboss(), 1000 / 60);
        }
 
 

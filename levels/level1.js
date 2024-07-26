@@ -9,7 +9,6 @@ function initLevel() {
         new Stegosaurus(),
         new Stegosaurus(),
         new Stegosaurus(),
-        new Endboss()
         ],
         [
             new Cloud(300, 'img/5_background/layers/4_clouds/1.png'),
@@ -54,6 +53,9 @@ function initLevel() {
         new Coins(),
         new Coins(),
         new Coins()
+        ],
+            [
+        new Endboss()
         ]
         );
         init();
