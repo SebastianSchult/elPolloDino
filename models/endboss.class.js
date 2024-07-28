@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
     y = 105;
     x = 3000;
     hadFirstContact = false;
+    animationIndex = 0;
     roar_sound = new Audio("audio/endboss_roarr.mp3");
     
 
@@ -68,48 +69,48 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DEAD);
         
-    
-        this.speed  = 10;
+        this.speed  = 2;
         this.animate();
 
     }
 
     animate() {
-        setStoppableInterval(() => this.animateEndboss(), 200);
+        setStoppableInterval(() => this.animateEndboss(), 100);
         setStoppableInterval(() => this.moveEndboss(), 1000 / 60);
        }
 
 
     animateEndboss() {
-        let i = 0;
-            if (i < 10) {
+        if (this.animationIndex < 10) {
             this.playAnimation(this.IMAGES_IDLE);
             this.otherDirection = true;
-            } else if ( i >= 10 && i < 20) {
-                this.playAnimation(this.IMAGES_WALKING);
-                this.otherDirection = true;
-                this.moveLeft();
-            } else if (i >= 20 && i < 30) {
-                this.playAnimation(this.IMAGES_ATTACK);
-                this.otherDirection = true;
-                this.roar_sound.play();
-                } else { ( i = 30)
-                    i = 0;
-                }
-            i++;
-            if (world.character.x > 2400 && !this.hadFirstContact) {
-                i = 0;
-                this.hadFirstContact = true;
-            }
-            this.playedAnimation = 0;
+        } else if (this.animationIndex >= 10 && this.animationIndex < 20) {
+            this.playAnimation(this.IMAGES_WALKING);
+            this.otherDirection = true;
+            
+        } else if (this.animationIndex >= 20 && this.animationIndex < 30) {
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.otherDirection = true;
+            this.roar_sound.play();
+        } else {
+            this.animationIndex = 0;
         }
+        this.animationIndex++;
+
+        if (world.character.x > 2400 && !this.hadFirstContact) {
+            this.hadFirstContact = true;
+            this.animationIndex = 0; 
+        }
+    }
         
     
 
     moveEndboss() {
         if ((world.level.endboss[0].x - world.character.x) < 500) {
-            this.moveLeft(false);
-        } 
+            if (this.animationIndex >= 10 && this.animationIndex < 20) {
+                this.moveLeft(); 
+            }
+        }
     }
 
 }

@@ -146,6 +146,7 @@ class Character extends MovableObject {
         if (this.playedAnimationCounter()) {
           this.playDeathAnimation();
         }
+      
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.lastMoveTime = Date.now();
