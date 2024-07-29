@@ -47,8 +47,9 @@ class MovableObject extends DrawableObject {
   
 
   setCharacterEnergy() {
-    this.energy -= 5;
-    if (this.energy <= 0) {
+    this.energy -= 0.1;
+    
+    if (this.energy < 0) {
       this.energy = 0;
     } else {
       this.lastHit = new Date().getTime();
@@ -57,7 +58,7 @@ class MovableObject extends DrawableObject {
 
   setStegoEnergy() {
     this.energy -= 100;
-    if (this.energy <= 0) {
+    if (this.energy < 0) {
       this.energy = 0;
     } else {
       this.lastHit = new Date().getTime();
@@ -86,7 +87,7 @@ class MovableObject extends DrawableObject {
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
-    return timepassed < 0.5;
+    return timepassed < 1;
   }
 
   isDead() {

@@ -8,6 +8,7 @@ class World {
     cameraX = 0;
     statusBar = new StatusBar();
     bottlesBar = new BottlesBar();
+    collectedBottles = 0;
     coinsBar = new CoinsBar();
     statusBarEndboss = new StatusBarEndboss();
     throwableObjects = [];
@@ -35,13 +36,50 @@ class World {
     }
 
     checkCollisions() {
-            this.level.enemies.forEach((enemy) => {
+        setStoppableInterval(() => {
+          this.checkEnemieCollision();
+          this.checkBottleCollision();
+        },40 );
+
+            /*this.level.enemies.forEach((enemy) => {
                 if( this.character.isColliding(enemy) ) {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                 }
-            });
+            });*/
     }
+
+    checkBottleCollision() {
+        this.level.bottles = this.level.bottles.filter((bottle) => {
+            if (this.character.isColliding(bottle)) {
+              this.collectedBottles++;
+              this.bottlesBar.setPercentage(this.collectedBottles);
+              return false;
+            }
+              return true;
+            });
+        }
+
+    checkEnemieCollision() {
+      this.level.enemies.forEach((enemy, index) => {
+        if (!enemy.isDead() && this.character.isColliding(enemy)) {
+          if (this.character.isAboveGround() && !this.character.isHurt()) {
+            this.character.jump(10);
+            enemy.hit();
+            setTimeout(() => {
+              this.level.enemies.splice(index, 1);
+            }, 500);
+          } else {
+            this.character.hit();
+            this.statusBar.setPercentage(this.character.energy);
+            } 
+          }
+        }
+      );
+    }
+        
+      
+    
 
     checkThrowObjects() {
         if (this.keyboard.D) {
