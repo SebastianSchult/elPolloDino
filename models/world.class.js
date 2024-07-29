@@ -12,6 +12,7 @@ class World {
     coinsBar = new CoinsBar();
     collectedCoins = 0;
     statusBarEndboss = new StatusBarEndboss();
+    endbossEnergy = 5;
     throwableObjects = [];
   
     constructor(canvas, keyboard) {
@@ -41,10 +42,27 @@ class World {
           this.checkEnemieCollision();
           this.checkBottleCollision();
           this.checkCoinCollision();
+          this.checkEndbossCollision();
         },40 );
 
             
     }
+
+    checkEndbossCollision() {
+        if (this.collectedBottles > 0) {
+          this.throwableObjects = this.throwableObjects.filter((bottle) => {
+            if (this.level.endboss[0].isColliding(bottle)) {
+              this.endbossEnergy--;
+              this.level.endboss[0].hit();
+              this.statusBarEndboss.setPercentage(this.endbossEnergy);
+              return false;
+              }
+              else {
+                return true;
+              }
+          });
+        }
+      }
 
     checkCoinCollision() {
         this.level.coins = this.level.coins.filter((coin) => {

@@ -80,7 +80,11 @@ class Endboss extends MovableObject {
 
 
     animateEndboss() {
-        if (this.animationIndex < 10) {
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.otherDirection = true;
+        }
+        else if (this.animationIndex < 10) {
             this.playAnimation(this.IMAGES_IDLE);
             this.otherDirection = true;
         } else if (this.animationIndex >= 10 && this.animationIndex < 20) {
