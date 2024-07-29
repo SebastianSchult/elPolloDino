@@ -10,6 +10,7 @@ class World {
     bottlesBar = new BottlesBar();
     collectedBottles = 0;
     coinsBar = new CoinsBar();
+    collectedCoins = 0;
     statusBarEndboss = new StatusBarEndboss();
     throwableObjects = [];
   
@@ -39,6 +40,7 @@ class World {
         setStoppableInterval(() => {
           this.checkEnemieCollision();
           this.checkBottleCollision();
+          this.checkCoinCollision();
         },40 );
 
             /*this.level.enemies.forEach((enemy) => {
@@ -48,6 +50,17 @@ class World {
                 }
             });*/
     }
+
+    checkCoinCollision() {
+        this.level.coins = this.level.coins.filter((coin) => {
+            if (this.character.isColliding(coin)) {
+              this.collectedCoins++;
+              this.coinsBar.setPercentage(this.collectedCoins);
+              return false;
+            }
+              return true;
+            });
+        }
 
     checkBottleCollision() {
         this.level.bottles = this.level.bottles.filter((bottle) => {
