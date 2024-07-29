@@ -6,7 +6,8 @@ class Character extends MovableObject {
   speed = 10;
   lastMoveTime = Date.now();
   world;
-  playedAnimation = 0;
+  playedDeathAnimation = false;
+  deathAnimationIndex = 0;
   walking_sound = new Audio("audio/running.mp3");
   jumping_sound = new Audio("audio/jump.mp3");
 
@@ -101,8 +102,6 @@ class Character extends MovableObject {
     "img/dinoworld/Hero/Throw (10).png",
   ];
 
-  
-
   constructor() {
     super().loadImage("img/dinoworld/Hero/Idle (1).png");
     this.loadImages(this.IMAGES_WALKING);
@@ -119,34 +118,38 @@ class Character extends MovableObject {
   animate() {
     setInterval(() => {
       this.walking_sound.pause();
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-        this.moveRight();
-        this.otherDirection = false;
-        this.walking_sound.play();
-      }
 
-      if (this.world.keyboard.LEFT && this.x > -360) {
-        this.moveLeft();
-        this.otherDirection = true;
-        this.walking_sound.play();
-      }
+      // Prüfen, ob der Character tot ist, bevor Bewegungsbefehle ausgeführt werden
+      if (!this.isDead()) {
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+          this.moveRight();
+          this.otherDirection = false;
+          this.walking_sound.play();
+        }
 
-      if (this.world.keyboard.UP && !this.isAboveGround()) {
-        this.jump();
-        this.jumping_sound.play();
-      }
+        if (this.world.keyboard.LEFT && this.x > -360) {
+          this.moveLeft();
+          this.otherDirection = true;
+          this.walking_sound.play();
+        }
 
-      this.world.cameraX = -this.x + 100;
+        if (this.world.keyboard.UP && !this.isAboveGround()) {
+          this.jump();
+          this.jumping_sound.play();
+        }
+
+        this.world.cameraX = -this.x + 100;
+      }
     }, 1000 / 60);
 
     setInterval(() => {
-        const lastMove = Date.now() - this.lastMoveTime;
-        const sleepTime = lastMove >= 3500;
+      const lastMove = Date.now() - this.lastMoveTime;
+      const sleepTime = lastMove >= 3500;
+
       if (this.isDead()) {
-        if (this.playedAnimationCounter()) {
+        if (!this.playedDeathAnimation) {
           this.playDeathAnimation();
         }
-      
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.lastMoveTime = Date.now();
@@ -161,15 +164,21 @@ class Character extends MovableObject {
         this.lastMoveTime = Date.now();
       } else if (sleepTime) {
         this.playAnimation(this.IMAGES_SLEEPING);
-      }
-      else {
+      } else {
         this.playAnimation(this.IMAGES_IDLE);
       }
     }, 50);
   }
 
   playDeathAnimation() {
-    this.playAnimation(this.IMAGES_DEAD);
-    this.playedAnimation++;
+    const intervalId = setInterval(() => {
+      if (this.deathAnimationIndex < this.IMAGES_DEAD.length) {
+        this.img = this.imageCache[this.IMAGES_DEAD[this.deathAnimationIndex]];
+        this.deathAnimationIndex++;
+      } else {
+        clearInterval(intervalId);
+        this.playedDeathAnimation = true;
+      }
+    }, 100); // Zeitintervall zwischen den Bildern, hier 100ms
   }
 }

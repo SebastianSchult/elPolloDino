@@ -43,9 +43,19 @@ class World {
           this.checkBottleCollision();
           this.checkCoinCollision();
           this.checkEndbossCollision();
+          this.checkEndbossHitCharacter();
         },40 );
 
             
+    }
+
+    checkEndbossHitCharacter() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        })
     }
 
     checkEndbossCollision() {
