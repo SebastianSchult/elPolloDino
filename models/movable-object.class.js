@@ -114,6 +114,6 @@ class MovableObject extends DrawableObject {
   }
 
   playedAnimationCounter() {
-    return this.playedAnimation < 9;
+    return this.playedAnimation < 30;
   }
 }
