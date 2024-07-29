@@ -35,8 +35,47 @@ class MovableObject extends DrawableObject {
   }
 
   hit() {
-    this.energy -= 5;
+    if (this instanceof Endboss)
+    this.setEndbossEnergy();
+    if (this instanceof Chicken)
+    this.setChickenEnergy();
+    if (this instanceof Stegosaurus)
+    this.setStegoEnergy();
+    else (this instanceof Character)
+    this.setCharacterEnergy();
+  }
+  
 
+  setCharacterEnergy() {
+    this.energy -= 5;
+    if (this.energy <= 0) {
+      this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
+    }
+  }
+
+  setStegoEnergy() {
+    this.energy -= 100;
+    if (this.energy <= 0) {
+      this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
+    }
+  }
+
+  setChickenEnergy() {
+    this.energy -= 100;
+    if (this.energy <= 0) {
+      this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
+    }
+  }
+    
+
+  setEndbossEnergy() {
+    this.energy -= 20;
     if (this.energy <= 0) {
       this.energy = 0;
     } else {

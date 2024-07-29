@@ -68,7 +68,6 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DEAD);
-        
         this.speed  = 2;
         this.animate();
 
@@ -87,11 +86,11 @@ class Endboss extends MovableObject {
         } else if (this.animationIndex >= 10 && this.animationIndex < 20) {
             this.playAnimation(this.IMAGES_WALKING);
             this.otherDirection = true;
-            
         } else if (this.animationIndex >= 20 && this.animationIndex < 30) {
+            this.roar_sound.play();
             this.playAnimation(this.IMAGES_ATTACK);
             this.otherDirection = true;
-            this.roar_sound.play();
+            
         } else {
             this.animationIndex = 0;
         }
