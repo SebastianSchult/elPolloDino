@@ -119,7 +119,6 @@ class Character extends MovableObject {
     setInterval(() => {
       this.walking_sound.pause();
 
-      // Prüfen, ob der Character tot ist, bevor Bewegungsbefehle ausgeführt werden
       if (!this.isDead()) {
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
           this.moveRight();
@@ -179,6 +178,7 @@ class Character extends MovableObject {
         clearInterval(intervalId);
         this.playedDeathAnimation = true;
       }
-    }, 100); // Zeitintervall zwischen den Bildern, hier 100ms
+    }, 100); 
   }
 }
+
