@@ -43,12 +43,7 @@ class World {
           this.checkCoinCollision();
         },40 );
 
-            /*this.level.enemies.forEach((enemy) => {
-                if( this.character.isColliding(enemy) ) {
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
-                }
-            });*/
+            
     }
 
     checkCoinCollision() {
@@ -81,7 +76,7 @@ class World {
             enemy.hit();
             setTimeout(() => {
               this.level.enemies.splice(index, 1);
-            }, 500);
+            }, 1000);
           } else {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy);
