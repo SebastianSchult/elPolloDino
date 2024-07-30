@@ -19,6 +19,7 @@ class Tropeognathus extends MovableObject {
         super().loadImage('img/dinoworld/Tropeognathus/PurpleFly (1).png');
         this.loadImages(this.IMAGES_WALKING);
         this.x = 750 + Math.random() * 3000;
+        this.y = 20 + Math.random() * 50;
         this.speed = 0.15 + Math.random() * 0.25;
         this.animate();
     }

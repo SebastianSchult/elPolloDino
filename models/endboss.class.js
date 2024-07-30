@@ -123,7 +123,7 @@ class Endboss extends MovableObject {
             this.animationIndex++;
         } else {
             this.deadAnimationPlayed = true;
-            this.animationIndex = this.IMAGES_DEAD.length; 
+            this.animationIndex = this.IMAGES_DEAD.length -1; 
         }
     }
 }

@@ -9,7 +9,7 @@ class Keyboard {
         this.SPACE = false;
         this.UP = false;
         this.DOWN = false;
-        this.D = false;
+        this.THROW = false;
 
         this.initEventListeners();
     }

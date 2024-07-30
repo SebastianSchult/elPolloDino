@@ -158,7 +158,7 @@ class Character extends MovableObject {
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         this.playAnimation(this.IMAGES_WALKING);
         this.lastMoveTime = Date.now();
-      } else if (this.world.keyboard.D) {
+      } else if (this.world.keyboard.THROW) {
         this.playAnimation(this.IMAGES_THROW);
         this.lastMoveTime = Date.now();
       } else if (sleepTime) {

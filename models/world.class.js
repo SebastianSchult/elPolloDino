@@ -114,14 +114,22 @@ class World {
       );
     }
         
-      
-    
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        /*if (this.keyboard.D) {
             let bottle = new ThrowableObject (this.character.x +100, this.character.y +100);
             this.throwableObjects.push(bottle);
-        }}
+        }}*/ 
+
+        //setStoppableInterval(() => {
+          if (this.keyboard.THROW && this.collectedBottles > 0 && this.character.otherDirection == false) {     
+            let bottle = new ThrowableObject (this.character.x +100, this.character.y +90);
+            this.throwableObjects.push(bottle);
+            this.collectedBottles--;
+            this.bottlesBar.setPercentage(this.collectedBottles);
+            }
+         // }, 100);
+        }
   
     generateBackgroundObjects() {
         const layersBlock1 = [
@@ -160,7 +168,7 @@ class World {
       this.addObjectsToMap(this.level.tropeognathus);
 
       this.ctx.translate(-this.cameraX, 0);
-      // ----- Space for fixd Objects -----
+      // ----- Space for fixed Objects -----
       this.addToMap(this.statusBar);
       this.addToMap(this.bottlesBar);
       this.addToMap(this.coinsBar);

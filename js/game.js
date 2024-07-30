@@ -41,7 +41,7 @@ window.addEventListener('keydown', (event) => {
     }
 
     if (event.keyCode == 68) {
-        keyboard.D = true;
+        keyboard.THROW = true;
     }
 });
 
@@ -64,7 +64,7 @@ window.addEventListener('keyup', (event) => {
     }
 
     if (event.keyCode == 68) {
-        keyboard.D = false;
+        keyboard.THROW = false;
     }
 });
 
