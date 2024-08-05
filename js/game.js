@@ -14,9 +14,20 @@ canvas = document.getElementById('canvas');
 world = new World(canvas, keyboard);
 buttonsDisable();
 checkScreenwidth();
-
+activateGameButtons();
 console.log('my Character is' , world.character);
 console.log('my Enemies are' , world.enemies);
+}
+
+function startGame() {
+    initLevelWithDelay();
+}
+
+function initLevelWithDelay(){
+    setTimeout(() => {
+        initLevel();
+        init();
+    }, 1000);
 }
 
 function checkScreenwidth() {
@@ -27,6 +38,10 @@ function checkScreenwidth() {
         document.getElementById("rotateDevice").classList.add('d-none');
         document.getElementById("rotateDeviceImage").classList.add('d-none');
     }
+ }
+
+ function activateGameButtons(){
+     document.getElementById('gameButtons').classList.remove('d-none');
  }
 
 function buttonsDisable() {

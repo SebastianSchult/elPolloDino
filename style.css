@@ -14,12 +14,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    max-height: 100dvh;
     margin: 0;
     background-image: url('img/dinoworld/background.jpeg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'sadLaugh', Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 .container {
@@ -78,19 +80,24 @@ h2 {
 canvas {
     background-color: black;
     border: 8px solid #ffffff;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 0px;
     display: block;
+    
+}
+
+#fullscreen {
+    position: relative;
 }
 
 .buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    top: 8px;
+    position: absolute;
     width: 100%;
-    top: 60%;
-    transform: translateY(-90%);
+    z-index: 1;
+
 }
 
 #startButton {
@@ -186,9 +193,9 @@ canvas {
     justify-content: space-between;
     right: 0;
     left: 0;
-    bottom: 5%;
+    bottom: 1%;
     padding: 0 18px;
-   
+    height: 64px;
 }
 
 .buttonContainer {

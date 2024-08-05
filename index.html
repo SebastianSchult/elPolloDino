@@ -34,7 +34,7 @@
 <body onload="startScreen()">
     <h2 id="rotateDevice" class="d-none"> To play rotate your device!</h2>
     <img src="img/rotateDevice.jpeg" id="rotateDeviceImage" class="d-none" alt="">
-    <div id="gameButtons" class="game-Buttons">
+    <div id="gameButtons" class="game-Buttons d-none">
         <div class="buttonSmallContainer">
             <div id="btnLeft" class="buttonContainer">
                 <img class="mobileGameButtonImageLeft" src="img/buttons/LeftArrow (1).png" alt="LEFT">
@@ -55,15 +55,17 @@
     <div class="container">
         <h1>El Loco Dino</h1>
        
-        <canvas id="canvas" width="720" height="480"></canvas>
+        <div id="fullscreen" >
+        <canvas id="canvas" class="canvas" width="720" height="480">  </canvas>
+        </div>
+        
         <div class="buttons">
-        <button id="startButton"  onclick="initLevel();">
+        <button id="startButton"  onclick="startGame();">
         </button>
         <button id="helpButton" onclick=""></button>
         <button id="fullscreenButton" onclick="">
             <img src="img/buttons/fullscreen.png" class="overly-fullscreen-image" alt="">
-        </button>
-        
+        </button>    
     </div>
 
     </div>
