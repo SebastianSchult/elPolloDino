@@ -138,6 +138,7 @@ canvas {
 
 
 #fullscreenButton {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -152,6 +153,26 @@ canvas {
     height: 64px;
     width: 64px;
     background-repeat: no-repeat;
+}
+
+.overly-fullscreen-image {
+    justify-content: center;
+    align-items: center;
+    top: 0%;
+    left: 0%;
+    height: 100%; 
+    width: 140%;
+    pointer-events: none; 
+    z-index: 1;
+}
+
+.overly-fullscreen-image img{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    z-index: 1;
 }
 
 #fullscreenButton:hover {
