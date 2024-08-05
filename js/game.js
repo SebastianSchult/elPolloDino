@@ -34,9 +34,11 @@ function checkScreenwidth() {
     if (window.innerWidth <= 650) {
         document.getElementById("rotateDevice").classList.remove('d-none');
         document.getElementById("rotateDeviceImage").classList.remove('d-none');
+        document.getElementById("title").classList.add('d-none');
     } else {
         document.getElementById("rotateDevice").classList.add('d-none');
         document.getElementById("rotateDeviceImage").classList.add('d-none');
+        document.getElementById("title").classList.remove('d-none');
     }
  }
 
@@ -49,6 +51,23 @@ function buttonsDisable() {
     document.getElementById('helpButton').classList.add('d-none');
     document.getElementById('fullscreenButton').classList.add('d-none');
 }
+
+function fullscreen() {
+    let fullscreen = document.getElementById('container');
+    enterFullscreen(fullscreen);
+}
+
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+        } else if (element.mRequestFullscreen) {
+        element.mRequestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+        }
+    }
 
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 39) {
