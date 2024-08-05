@@ -30,13 +30,13 @@ body {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 h1 {
     white-space: nowrap;
     position: absolute;
-    top: calc(10% - 248px); /* 50% der Höhe des Fensters minus halbe Höhe des Canvas (240px) minus 8px Abstand */
+    top: calc(10% - 248px); 
     transform: translateY(-70%);
     margin: 0;
     font-size: 64px;
@@ -45,6 +45,35 @@ h1 {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     padding: 64px;
 }
+
+h2 {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 32px;
+    z-index: 1;
+    color: white;
+    margin: 0;
+    padding: 8px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    position: absolute;
+    top: 1%;
+  }
+
+  #rotateDeviceImage {
+    height: auto;
+    width: 480px;
+    max-width: 90%;
+    max-height: 80%;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+    border: 6px solid white;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+  }
 
 canvas {
     background-color: black;
@@ -137,7 +166,7 @@ canvas {
     right: 0;
     left: 0;
     bottom: 5%;
-    margin: 0 32px;
+    padding: 0 18px;
    
 }
 

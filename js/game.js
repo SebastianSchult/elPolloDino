@@ -5,16 +5,29 @@ let intervalIds = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     keyboard = new Keyboard();
+    window.addEventListener('resize', checkScreenwidth);
+    window.addEventListener('load', checkScreenwidth);
 });
 
 function init() {
 canvas = document.getElementById('canvas');
 world = new World(canvas, keyboard);
 buttonsDisable();
+checkScreenwidth();
 
 console.log('my Character is' , world.character);
 console.log('my Enemies are' , world.enemies);
 }
+
+function checkScreenwidth() {
+    if (window.innerWidth <= 650) {
+        document.getElementById("rotateDevice").classList.remove('d-none');
+        document.getElementById("rotateDeviceImage").classList.remove('d-none');
+    } else {
+        document.getElementById("rotateDevice").classList.add('d-none');
+        document.getElementById("rotateDeviceImage").classList.add('d-none');
+    }
+ }
 
 function buttonsDisable() {
     document.getElementById('startButton').classList.add('d-none');

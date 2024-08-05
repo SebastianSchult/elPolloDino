@@ -14,6 +14,7 @@ class World {
     statusBarEndboss = new StatusBarEndboss();
     endbossEnergy = 5;
     throwableObjects = [];
+    audioFiles = new Sounds();
   
     constructor(canvas, keyboard) {
       this.ctx = canvas.getContext("2d");
@@ -42,6 +43,7 @@ class World {
           this.checkEnemieCollision();
           this.checkBottleCollision();
           this.checkCoinCollision();
+          this.checkBottleCollisionEnemy();
           this.checkEndbossCollision();
           this.checkEndbossHitCharacter();
         },40 );
@@ -73,6 +75,16 @@ class World {
           });
         }
       }
+
+    checkBottleCollisionEnemy() {
+      this.throwableObjects.forEach((bottle, index) => {
+        this.level.enemies.forEach((enemy) => {
+          if (bottle.isColliding(enemy)) {
+            enemy.hit();
+          }
+        })
+      })
+    }
 
     checkCoinCollision() {
         this.level.coins = this.level.coins.filter((coin) => {

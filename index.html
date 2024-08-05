@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Loco Dino</title>
-    <link rel="icon" href="./img/pepeFavIcon.jpeg">
+    <link rel="icon" href="./img/dinoworld/Triceratops/Attack (1).png">
     <link rel="stylesheet" href="style.css">
     
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
+    <script src="./models/sounds.class.js" ></script>
     <script src="./models/character.class.js"></script>
     <script src="./models/chicken.class.js"></script>
     <script src="./models/tropeognathus.class.js" ></script>
@@ -31,6 +32,8 @@
 
 </head>
 <body onload="startScreen()">
+    <h2 id="rotateDevice" class="d-none"> To play rotate your device!</h2>
+    <img src="img/rotateDevice.jpeg" id="rotateDeviceImage" class="d-none" alt="">
     <div id="gameButtons" class="game-Buttons">
         <div class="buttonSmallContainer">
             <div id="btnLeft" class="buttonContainer">
