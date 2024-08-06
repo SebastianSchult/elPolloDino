@@ -41,17 +41,40 @@
 
     <h1 id="title">El Loco Dino</h1>
     <div id="fullscreen">
-        <div class="gameInstructions">
-            <div class="instructions">
-                This is the 2D Jump & Run story of Mina and her dinosaur park. The dinosaurs have been infected by a virus and have been attacking Mina and all her neighbors ever since. Help Mina to repel the invasion of the dinosaurs. The little dinosaurs can only be defeated with the help of her jumping power from above. The big boss dinosaur must be defeated with the salsa bottles and can only be attacked from the front. But be careful, there are not infinite bottles available!
-                </div>
-            <div class="homeButton">
-               <img src="img/buttons/Home (1).png" class="normalImg" alt="">
-               <img src="img/buttons/Home (2).png" class="hoverImg" alt="">
-            </div>
+      <div id="gameInstructions" class="gameInstructions d-none">
+        <div class="instructions">
+          This is the 2D Jump & Run story of Mina and her dinosaur park. The
+          dinosaurs have been infected by a virus and have been attacking Mina
+          and all her neighbors ever since. Help Mina to repel the invasion of
+          the dinosaurs. The little dinosaurs can only be defeated with the help
+          of her jumping power from above. The big boss dinosaur must be
+          defeated with the salsa bottles and can only be attacked from the
+          front. But be careful, there are not infinite bottles available!
         </div>
-    <div id="container" class="container">
-      
+        <div class="keyboardInstructions d-none" id="keyboardInstructions">
+          Use the following buttons to help Mina on his journey against the big
+          final dinosaur! <br />
+          Walk Left: Key ARROW LEFT <br />
+          Walk Right: Key ARROW RIGHT <br />
+          Jump: Key Arrow UP <br />
+          Throw a Salsa Bottle: Key D
+        </div>
+        <div class="instructionButtons">
+          <div class="keyBoardButton" id="keyBoardButton" onclick="openkeyBoardSettings()">
+            <img src="img/buttons/Settings (1).png" class="normalImg" alt="" />
+            <img src="img/buttons/Settings (2).png" class="hoverImg" alt="" />
+          </div>
+          <div class="homeButton" id="homeButton" onclick="closeInstructions()">
+            <img src="img/buttons/Home (1).png" class="normalImg" alt="" />
+            <img src="img/buttons/Home (2).png" class="hoverImg" alt="" />
+          </div>
+          <div class="backButton d-none" id="backButton" onclick="closeKeyBoardSettings()">
+            <img src="img/buttons/Exit (1).png" class="normalImg" alt="" />
+            <img src="img/buttons/Exit (2).png" class="hoverImg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div id="container" class="container">
         <canvas id="canvas" class="canvas" width="720" height="480"> </canvas>
         <div id="gameButtons" class="game-Buttons d-none">
           <div class="buttonSmallContainer">
@@ -92,10 +115,20 @@
 
       <div class="buttons">
         <button id="startButton" onclick="startGame();"></button>
-        <button id="helpButton" onclick=""></button>
+        <button id="helpButton" onclick="openInstructions()"></button>
         <button id="fullscreenButton" onclick="toggleFullscreen();">
-            <img src="img/buttons/-fullscreen_89822.png" id="fullscreenButtonIMG" class="overlay-fullscreen-image" alt=""/>
-            <img src="img/buttons/fullscreen_exit_icon_135570.png" id="exitFullscreenButtonIMG" class="overlay-fullscreen-image d-none" alt=""/>
+          <img
+            src="img/buttons/-fullscreen_89822.png"
+            id="fullscreenButtonIMG"
+            class="overlay-fullscreen-image"
+            alt=""
+          />
+          <img
+            src="img/buttons/fullscreen_exit_icon_135570.png"
+            id="exitFullscreenButtonIMG"
+            class="overlay-fullscreen-image d-none"
+            alt=""
+          />
         </button>
       </div>
     </div>

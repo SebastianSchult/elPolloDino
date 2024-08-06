@@ -34,10 +34,12 @@ function checkScreenwidth() {
         document.getElementById("rotateDevice").classList.remove('d-none');
         document.getElementById("rotateDeviceImage").classList.remove('d-none');
         document.getElementById("title").classList.add('d-none');
+        document.getElementById("gameInstructions").classList.add('d-none');
     } else {
         document.getElementById("rotateDevice").classList.add('d-none');
         document.getElementById("rotateDeviceImage").classList.add('d-none');
         document.getElementById("title").classList.remove('d-none');
+        document.getElementById("gameInstructions").classList.remove('d-none');
     }
  }
 
@@ -92,6 +94,30 @@ function exitFullscreen() {
     document.getElementById('fullscreenButtonIMG').classList.remove('d-none');
     document.getElementById('exitFullscreenButtonIMG').classList.add('d-none');
 }
+
+function openInstructions() { 
+    document.getElementById('gameInstructions').classList.remove('d-none');
+
+}
+
+function closeInstructions() { 
+    document.getElementById('gameInstructions').classList.add('d-none');
+}
+
+function openkeyBoardSettings() {
+    document.getElementById('keyboardInstructions').classList.remove('d-none');
+    document.getElementById('homeButton').classList.add('d-none');
+    document.getElementById('keyBoardButton').classList.add('d-none');
+    document.getElementById('backButton').classList.remove('d-none');
+}
+
+function closeKeyBoardSettings() {
+    document.getElementById('keyboardInstructions').classList.add('d-none');
+    document.getElementById('homeButton').classList.remove('d-none');
+    document.getElementById('keyBoardButton').classList.remove('d-none');
+    document.getElementById('backButton').classList.add('d-none');
+}
+    
 
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 39) {
