@@ -125,6 +125,7 @@ canvas {
     width: 100%;
     z-index: 4;
     font-size: 32px;
+    color: #ffffff;
     background-color: #F7C074;
     border: #ffffff 8px solid;
     border-radius: 16px;
