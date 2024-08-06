@@ -83,8 +83,69 @@ canvas {
     background-color: black;
     border: 8px solid #ffffff;
     border-radius: 16px;
-    left: 0px;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
     display: block;
+}
+
+.gameInstructions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.instructions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    font-size: 32px;
+    background-color: #F7C074;
+    border: #ffffff 8px solid;
+    border-radius: 16px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 8px;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.homeButton {
+    position: absolute;
+    height: 64px;
+    width: 64px;
+    bottom: 8px;
+    right: 8px;
+    padding: 4px;
+    z-index: 4;
+    cursor: pointer;
+}
+
+.homeButton img {
+    height: 100%;
+    width: 100%;
+    bottom: 8px;
+    right: 8px;
+    padding: 4px;
+    z-index: 4;
+}
+
+.homeButton .hoverImg {
+    display: none;
+    z-index: 5;
+}
+
+.homeButton:hover .hoverImg {
+    display: block;
+}
+
+.homeButton:hover .normalImg {
+    display: none;
 }
 
 #fullscreen {
