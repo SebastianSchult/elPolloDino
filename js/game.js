@@ -15,6 +15,7 @@ world = new World(canvas, keyboard);
 buttonsDisable();
 checkScreenwidth();
 activateGameButtons();
+closeInstructions();
 console.log('my Character is' , world.character);
 console.log('my Enemies are' , world.enemies);
 }
@@ -97,11 +98,13 @@ function exitFullscreen() {
 
 function openInstructions() { 
     document.getElementById('gameInstructions').classList.remove('d-none');
+    document.getElementById('instructions').classList.remove('d-none');
 
 }
 
 function closeInstructions() { 
     document.getElementById('gameInstructions').classList.add('d-none');
+    document.getElementById('instructions').classList.add('d-none');
 }
 
 function openkeyBoardSettings() {
