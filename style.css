@@ -232,16 +232,17 @@ canvas {
 
 #fullscreen {
     position: relative;
+    z-index: 1;
 }
 
 .buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 8px;
+    top: 10%;
     position: absolute;
     width: 100%;
-    z-index: 1;
+    z-index: 5;
 }
 
 .instructionButtons {
@@ -318,6 +319,7 @@ canvas {
 }
 
 #exitFullscreenButton {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -325,7 +327,7 @@ canvas {
     margin: 16px;
     padding: 12px 24px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
     background: transparent;
     border: none;
     background-image: url("img/buttons/blank/Blank (1).png" );
@@ -341,7 +343,7 @@ canvas {
     top: 0%;
     left: 0%;
     pointer-events: none; 
-    z-index: 3;
+    z-index: 4;
     height: 60px;
     width: 60px;
 }

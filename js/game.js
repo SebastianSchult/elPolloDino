@@ -68,7 +68,7 @@ function toggleFullscreen() {
 }
 
 function enterFullscreen() {
-    const canvasContainer = document.querySelector('.container');
+    let canvasContainer = document.getElementById('container');
     if (canvasContainer.requestFullscreen) {
         canvasContainer.requestFullscreen();
     } else if (canvasContainer.mozRequestFullScreen) { 
