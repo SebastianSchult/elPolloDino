@@ -26,7 +26,6 @@ function startGame() {
 function initLevelWithDelay(){
     setTimeout(() => {
         initLevel();
-        init();
     }, 1000);
 }
 

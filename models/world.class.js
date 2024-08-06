@@ -46,7 +46,7 @@ class World {
           this.checkBottleCollisionEnemy();
           this.checkEndbossCollision();
           this.checkEndbossHitCharacter();
-        },40 );
+        }, 40);
 
             
     }
@@ -116,7 +116,7 @@ class World {
             enemy.hit();
             setTimeout(() => {
               this.level.enemies.splice(index, 1);
-            }, 1000);
+            }, 500);
           } else {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy);

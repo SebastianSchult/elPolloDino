@@ -193,10 +193,12 @@ canvas {
     z-index: 1;
     position: absolute;
     justify-content: space-between;
+    align-items: center;
+    
     right: 0;
     left: 0;
-    bottom: 1%;
-    padding: 0 18px;
+    bottom: 5%;
+    padding: 8px 18px;
     height: 64px;
 }
 
@@ -227,5 +229,12 @@ canvas {
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100svh;
+    }
+}
+
+
+@media only screen and (max-height: 540px) {
+    h1 {
+        display: none;
     }
 }
