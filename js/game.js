@@ -1,13 +1,9 @@
 let canvas;
 let world;
-let keyboard;
+let keyboard = {};
 let intervalIds = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-    keyboard = new Keyboard();
-    window.addEventListener('resize', checkScreenwidth);
-    window.addEventListener('load', checkScreenwidth);
-});
+
 
 function init() {
 canvas = document.getElementById('canvas');
@@ -85,9 +81,6 @@ function exitFullscreen() {
     document.getElementById('exitFullscreenButtonIMG').classList.add('d-none');
 }
 
-
-
-window.addEventListener('resize', adjustCanvasSize);
 
 
 function openInstructions() { 
