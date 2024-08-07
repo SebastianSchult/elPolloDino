@@ -231,7 +231,8 @@ canvas {
 }
 
 #fullscreen {
-    position: relative;
+    display: flex;
+    justify-content: center;
     z-index: 1;
 }
 
@@ -241,7 +242,7 @@ canvas {
     align-items: center;
     top: 10%;
     position: absolute;
-    width: 100%;
+    
     z-index: 5;
 }
 

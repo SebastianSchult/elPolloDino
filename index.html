@@ -6,7 +6,6 @@
     <title>El Loco Dino</title>
     <link rel="icon" href="./img/dinoworld/Triceratops/Attack (1).png" />
     <link rel="stylesheet" href="style.css" />
-
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/sounds.class.js"></script>
@@ -52,8 +51,10 @@
           front. But be careful, there are not infinite bottles available!
         </div>
         <div class="keyboardInstructions d-none" id="keyboardInstructions">
-          <p>Use the following buttons to help Mina on his journey against the
-            big final dinosaur!</p>
+          <p>
+            Use the following buttons to help Mina on her journey against the
+            big final dinosaur!
+          </p>
           <p>Walk Left: Key ARROW LEFT</p>
           <p>Jump: Key Arrow UP</p>
           <p>Throw a Salsa Bottle: Key D</p>
@@ -82,44 +83,44 @@
           </div>
         </div>
       </div>
-      <div id="container" class="container">
-        <canvas id="canvas" class="canvas" width="720" height="480"> </canvas>
-        <div id="gameButtons" class="game-Buttons d-none">
-          <div class="buttonSmallContainer">
-            <div id="btnLeft" class="buttonContainer">
-              <img
-                class="mobileGameButtonImageLeft"
-                src="img/buttons/LeftArrow (1).png"
-                alt="LEFT"
-              />
-            </div>
-            <div id="btnRight" class="buttonContainer">
-              <img
-                class="mobileGameButtonImageRight"
-                src="img/buttons/RightArrow (1).png"
-                alt="RIGHT"
-              />
-            </div>
+
+      <canvas id="canvas" class="canvas" width="720" height="480"></canvas>
+      <div id="gameButtons" class="game-Buttons d-none">
+        <div class="buttonSmallContainer">
+          <div id="btnLeft" class="buttonContainer">
+            <img
+              class="mobileGameButtonImageLeft"
+              src="img/buttons/LeftArrow (1).png"
+              alt="LEFT"
+            />
           </div>
-          <div class="buttonSmallContainer">
-            <div id="btnJump" class="buttonContainer">
-              <img
-                class="mobileGameButtonImageJump"
-                src="img/buttons/Up (1).png"
-                alt="JUMP"
-              />
-            </div>
-            <div id="btnThrow" class="buttonContainer">
-              <img
-                class="mobileGameButtonImageThrow"
-                style="transform: rotate(-45deg)"
-                src="img/buttons/RightArrow (1).png"
-                alt="THROW"
-              />
-            </div>
+          <div id="btnRight" class="buttonContainer">
+            <img
+              class="mobileGameButtonImageRight"
+              src="img/buttons/RightArrow (1).png"
+              alt="RIGHT"
+            />
+          </div>
+        </div>
+        <div class="buttonSmallContainer">
+          <div id="btnJump" class="buttonContainer">
+            <img
+              class="mobileGameButtonImageJump"
+              src="img/buttons/Up (1).png"
+              alt="JUMP"
+            />
+          </div>
+          <div id="btnThrow" class="buttonContainer">
+            <img
+              class="mobileGameButtonImageThrow"
+              style="transform: rotate(-45deg)"
+              src="img/buttons/RightArrow (1).png"
+              alt="THROW"
+            />
           </div>
         </div>
       </div>
+
       <div class="buttons">
         <button id="startButton" onclick="startGame();"></button>
         <button id="helpButton" onclick="openInstructions()"></button>
@@ -138,8 +139,6 @@
           />
         </button>
       </div>
-      
     </div>
-    
   </body>
 </html>
