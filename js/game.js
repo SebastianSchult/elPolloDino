@@ -3,7 +3,11 @@ let world;
 let keyboard = {};
 let intervalIds = [];
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    keyboard = new Keyboard();
+    window.addEventListener('resize', checkScreenwidth);
+    window.addEventListener('load', checkScreenwidth);
+});
 
 function init() {
 canvas = document.getElementById('canvas');
@@ -11,6 +15,7 @@ world = new World(canvas, keyboard);
 //buttonsDisable();
 activateGameButtons();
 closeInstructions();
+checkScreenwidth();
 console.log('my Character is' , world.character);
 console.log('my Enemies are' , world.enemies);
 }
@@ -25,7 +30,17 @@ function initLevelWithDelay(){
     }, 1000);
 }
 
-
+function checkScreenwidth() {
+    if (window.innerWidth <= 650) {
+        document.getElementById("rotateDevice").classList.remove('d-none');
+        document.getElementById("rotateDeviceImage").classList.remove('d-none');
+        document.getElementById("title").classList.add('d-none');
+    } else {
+        document.getElementById("rotateDevice").classList.add('d-none');
+        document.getElementById("rotateDeviceImage").classList.add('d-none');
+        document.getElementById("title").classList.remove('d-none');
+    }
+ }
 
  function activateGameButtons(){
      document.getElementById('gameButtons').classList.remove('d-none');

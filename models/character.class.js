@@ -141,7 +141,7 @@ class Character extends MovableObject {
       }
     }, 1000 / 60);
 
-    setInterval(() => {
+    setStoppableInterval(() => {
       const lastMove = Date.now() - this.lastMoveTime;
       const sleepTime = lastMove >= 3500;
 
