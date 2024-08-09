@@ -8,8 +8,7 @@ class Character extends MovableObject {
   world;
   playedDeathAnimation = false;
   deathAnimationIndex = 0;
-  walking_sound = new Audio("audio/running.mp3");
-  jumping_sound = new Audio("audio/jump.mp3");
+ 
 
   IMAGES_IDLE = [
     "img/dinoworld/Hero/Idle (1).png",
@@ -117,24 +116,23 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
-      this.walking_sound.pause();
 
       if (!this.isDead()) {
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
           this.moveRight();
           this.otherDirection = false;
-          this.walking_sound.play();
+          this.world.soundManager.playSound('run');
         }
 
         if (this.world.keyboard.LEFT && this.x > -360) {
           this.moveLeft();
           this.otherDirection = true;
-          this.walking_sound.play();
+          this.world.soundManager.playSound('run');
         }
 
         if (this.world.keyboard.UP && !this.isAboveGround()) {
           this.jump();
-          this.jumping_sound.play();
+          this.world.soundManager.playSound('jump');
         }
 
         this.world.cameraX = -this.x + 100;
@@ -147,6 +145,7 @@ class Character extends MovableObject {
 
       if (this.isDead()) {
         if (!this.playedDeathAnimation) {
+          this.world.soundManager.playSound('characterDeath');
           this.playDeathAnimation();
         }
       } else if (this.isHurt()) {
@@ -174,6 +173,7 @@ class Character extends MovableObject {
       if (this.deathAnimationIndex < this.IMAGES_DEAD.length) {
         this.img = this.imageCache[this.IMAGES_DEAD[this.deathAnimationIndex]];
         this.deathAnimationIndex++;
+        
       } else {
         clearInterval(intervalId);
         this.playedDeathAnimation = true;

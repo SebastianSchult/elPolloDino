@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = {};
 let intervalIds = [];
+let music = new Audio('audio/locoDinoTheme.mp3');
 
 document.addEventListener('DOMContentLoaded', () => {
     keyboard = new Keyboard();
@@ -17,6 +18,8 @@ closeInstructions();
 checkScreenwidth();
 document.getElementById('helpButton').classList.add('d-none');
 document.getElementById('restartButtonOverlay').classList.remove('d-none');
+document.getElementById('soundButton').classList.remove('d-none');
+document.getElementById('startButton').classList.add('d-none');
 
 console.log('my Character is' , world.character);
 console.log('my Enemies are' , world.enemies);
@@ -199,6 +202,7 @@ function lostImage() {
 
 function wonImage() {
     document.getElementById('winImage').classList.remove('d-none');
+    showRestartButton();
 }
 
 function stopGame() {
@@ -209,4 +213,14 @@ function showRestartButton() {
     document.getElementById('restartButtonOverlay').classList.remove('d-none');
     document.getElementById('startButton').classList.add('d-none');
     document.getElementById('fullscreenButton').classList.add('d-none');
+}
+
+function playBackgroundmusic() {
+    music.play();
+    music.volume = 0.05;
+    music.loop = 'loop';
+}
+
+function stopBackgroundmusic() {
+    music.pause();
 }

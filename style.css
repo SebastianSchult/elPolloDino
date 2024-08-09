@@ -400,7 +400,7 @@ canvas {
 }
 
 #lostImage,
-#wonImage {
+#winImage {
     position: absolute;
     z-index: 20;
     top: 0;
@@ -451,6 +451,37 @@ canvas {
 .restartButtonActivate {
     z-index: 20;
 }
+
+.soundButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    margin: 16px;
+    padding: 12px 24px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    background-size: cover;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+    background-image: url("img/buttons/blank/Blank (1).png" );
+    z-index: 53;
+}
+
+.soundButton:hover {
+    background-image: url("img/buttons/blank/Blank (2).png");
+}
+
+.soundButton img {
+    height: 50px;
+    width: 50px;
+    z-index: 54;
+}
+
+
     
     
 

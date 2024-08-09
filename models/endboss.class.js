@@ -91,7 +91,6 @@ class Endboss extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
             this.otherDirection = true;
         } else if (this.animationIndex >= 20 && this.animationIndex < 30) {
-            this.roar_sound.play();
             this.playAnimation(this.IMAGES_ATTACK);
             this.otherDirection = true;
         } else {
