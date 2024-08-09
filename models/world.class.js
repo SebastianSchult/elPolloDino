@@ -172,20 +172,56 @@ class World {
    */
   checkEnemieCollision() {
     this.level.enemies.forEach((enemy, index) => {
-      if (!enemy.isDead() && this.character.isColliding(enemy)) {
-        if (this.character.isAboveGround() && !this.character.isHurt()) {
-          this.character.jump(10);
-          enemy.hit();
-          setTimeout(() => {
-            this.level.enemies.splice(index, 1);
-          }, 500);
-        } else {
-          this.character.hit();
-          this.soundManager.playSound("hurt");
-          this.statusBar.setPercentage(this.character.energy);
+      if (this.enemyNotDeadAndCharisColliding(enemy)) {
+        if (this.charAboveGroundAndNotHurt()) this.charHitsEnemy(enemy, index);
+        else {
+          this.charIsHit();
         }
       }
     });
+  }
+
+    /**
+   * Checks if the enemy is not dead and colliding with the character.
+   *
+   * @param {Object} enemy - The enemy object to check collision with.
+   * @return {boolean} Returns true if the enemy is not dead and colliding with the character, otherwise false.
+   */
+  enemyNotDeadAndCharisColliding(enemy) {
+    return !enemy.isDead() && this.character.isColliding(enemy);
+  }
+
+    /**
+   * Checks if the character is above ground and not hurt.
+   *
+   * @return {boolean} true if the character is above ground and not hurt, false otherwise
+   */
+  charAboveGroundAndNotHurt() {
+    return this.character.isAboveGround() && !this.character.isHurt();
+  }
+
+    /**
+   * Handles the character hitting an enemy.
+   *
+   * @param {Object} enemy - The enemy object that was hit.
+   * @param {number} index - The index of the enemy in the level's enemies array.
+   * @return {void} This function does not return a value.
+   */
+  charHitsEnemy(enemy, index) {
+    this.character.jump(10);
+    enemy.hit();
+    setTimeout(() => this.level.enemies.splice(index, 1), 500);
+  }
+
+  /**
+   * Hits the character and plays a hurt sound. Also updates the status bar energy percentage.
+   *
+   * @return {void} This function does not return a value.
+   */
+  charIsHit() {
+    this.character.hit();
+    this.soundManager.playSound("hurt");
+    this.statusBar.setPercentage(this.character.energy);
   }
 
   /**
@@ -252,13 +288,10 @@ class World {
    */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.cameraX, 0);
-
     this.addObjectsToMap(this.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.tropeognathus);
-
     this.ctx.translate(-this.cameraX, 0);
     // ----- Space for fixed Objects -----
     this.addToMap(this.statusBar);
@@ -266,17 +299,13 @@ class World {
     this.addToMap(this.coinsBar);
     this.addToMap(this.statusBarEndboss);
     this.ctx.translate(this.cameraX, 0);
-
     this.addObjectsToMap(this.throwableObjects);
-
     this.addToMap(this.character);
-
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.level.coins);
     this.ctx.translate(-this.cameraX, 0);
-
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -303,16 +332,12 @@ class World {
    * @return {void} This function does not return a value.
    */
   addToMap(movableObject) {
-    if (movableObject.otherDirection) {
-      this.flipImage(movableObject);
-    }
-
+    if (movableObject.otherDirection) 
+    this.flipImage(movableObject);
     movableObject.draw(this.ctx);
     movableObject.drawBorder(this.ctx);
-
-    if (movableObject.otherDirection) {
-      this.flipImageBack(movableObject);
-    }
+    if (movableObject.otherDirection) this.flipImageBack(movableObject);
+    
   }
 
   /**

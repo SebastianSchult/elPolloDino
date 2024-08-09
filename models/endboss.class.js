@@ -102,7 +102,6 @@ class Endboss extends MovableObject {
       }
       return;
     }
-
     if (this.animationIndex < 10) {
       this.playAnimation(this.IMAGES_IDLE);
       this.otherDirection = true;
