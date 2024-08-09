@@ -1,5 +1,11 @@
 let level1; 
 
+
+/**
+ * Initializes a new level by creating a new Level object with various game elements and then calls the init function.
+ *
+ * @return {void} This function does not return a value.
+ */
 function initLevel() {
     level1 =  new Level(
         [
