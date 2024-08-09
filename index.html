@@ -40,6 +40,14 @@
 
     <h1 id="title">El Loco Dino</h1>
     <div id="fullscreen">
+      <div class="lostImage" width="720" height="480px">
+        <img id="lostImage" class="d-none" width="720" height="480px" src="img/dinoworld/lostImage.jpeg" alt="">
+      </div>
+      <div class="winImage">
+        <img id="winImage" class="d-none" width="720" height="480px" src="img/dinoworld/inImage.jpeg" alt="">
+      </div>
+      
+     
       <div id="gameInstructions" class="gameInstructions d-none">
         <div class="instructions d-none" id="instructions">
           This is the 2D Jump & Run story of Mina and her dinosaur park. The
@@ -138,6 +146,8 @@
             alt=""
           />
         </button>
+        <button id="restartButtonOverlay" class="restartButtonOverlay d-none" onclick="location.reload()"></button>
+         
       </div>
     </div>
   </body>

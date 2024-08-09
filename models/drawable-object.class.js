@@ -37,6 +37,20 @@ class DrawableObject {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
+  stopAnimation() {
+    setInterval(() => {
+        if (this.percentage == 0) {
+            stopGame();
+            if (this instanceof StatusBar) {
+                lostImage();
+            }
+            if (this instanceof StatusBarEndboss) {
+                wonImage();
+            }
+        }
+    }, 2000);
+}
+
   
 
 }

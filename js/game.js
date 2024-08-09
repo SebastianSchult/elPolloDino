@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function init() {
 canvas = document.getElementById('canvas');
 world = new World(canvas, keyboard);
-//buttonsDisable();
 activateGameButtons();
 closeInstructions();
 checkScreenwidth();
 document.getElementById('helpButton').classList.add('d-none');
+document.getElementById('restartButtonOverlay').classList.remove('d-none');
 
 console.log('my Character is' , world.character);
 console.log('my Enemies are' , world.enemies);
@@ -190,4 +190,23 @@ function startScreen() {
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
+}
+
+function lostImage() {
+    document.getElementById('lostImage').classList.remove('d-none');
+    showRestartButton();
+}
+
+function wonImage() {
+    document.getElementById('winImage').classList.remove('d-none');
+}
+
+function stopGame() {
+    intervalIds.forEach(clearInterval);
+}
+
+function showRestartButton() {
+    document.getElementById('restartButtonOverlay').classList.remove('d-none');
+    document.getElementById('startButton').classList.add('d-none');
+    document.getElementById('fullscreenButton').classList.add('d-none');
 }

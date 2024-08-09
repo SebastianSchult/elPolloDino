@@ -246,7 +246,7 @@ canvas {
     position: absolute;
     justify-content: center;
     align-items: center;
-    z-index: 5;
+    z-index: 21;
 }
 
 .instructionButtons {
@@ -398,6 +398,61 @@ canvas {
     height: 64px;
     width: 64px;
 }
+
+#lostImage,
+#wonImage {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: auto;
+    height: auto;
+}
+
+.restartButtonOverlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    background-size: cover;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+    background-image: url("img/buttons/Sync (1).png" );
+    z-index: 52;
+}
+
+#restartButton {
+    display: absolute;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    cursor: pointer;
+    
+    width: 64px;
+    height: 64px;
+    bottom: 48px;
+}
+
+.restartButtonOverlay:hover {
+    background-image: url("img/buttons/Sync (2).png");
+}
+
+.restartButtonActivate {
+    z-index: 20;
+}
+    
+    
 
 /* Smartphones ----- */
 @media only screen and (max-width: 720px) {
