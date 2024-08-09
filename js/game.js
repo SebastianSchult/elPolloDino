@@ -16,6 +16,8 @@ world = new World(canvas, keyboard);
 activateGameButtons();
 closeInstructions();
 checkScreenwidth();
+document.getElementById('helpButton').classList.add('d-none');
+
 console.log('my Character is' , world.character);
 console.log('my Enemies are' , world.enemies);
 }
@@ -102,6 +104,7 @@ function openInstructions() {
     document.getElementById('gameInstructions').classList.remove('d-none');
     document.getElementById('instructions').classList.remove('d-none');
     document.getElementById('instructionButtons').classList.remove('d-none');
+    document.getElementById('buttons').classList.add('d-none');
 
 }
 
@@ -109,6 +112,7 @@ function closeInstructions() {
     document.getElementById('gameInstructions').classList.add('d-none');
     document.getElementById('instructions').classList.add('d-none');
     document.getElementById('instructionButtons').classList.add('d-none');
+    document.getElementById('buttons').classList.remove('d-none');
 }
 
 function openkeyBoardSettings() {
@@ -116,6 +120,7 @@ function openkeyBoardSettings() {
     document.getElementById('homeButton').classList.add('d-none');
     document.getElementById('keyBoardButton').classList.add('d-none');
     document.getElementById('backButton').classList.remove('d-none');
+    
 }
 
 function closeKeyBoardSettings() {
@@ -123,6 +128,7 @@ function closeKeyBoardSettings() {
     document.getElementById('homeButton').classList.remove('d-none');
     document.getElementById('keyBoardButton').classList.remove('d-none');
     document.getElementById('backButton').classList.add('d-none');
+
 }
     
 
