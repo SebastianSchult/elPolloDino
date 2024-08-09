@@ -8,7 +8,6 @@ class Character extends MovableObject {
   world;
   playedDeathAnimation = false;
   deathAnimationIndex = 0;
- 
 
   IMAGES_IDLE = [
     "img/dinoworld/Hero/Idle (1).png",
@@ -101,6 +100,14 @@ class Character extends MovableObject {
     "img/dinoworld/Hero/Throw (10).png",
   ];
 
+  /**
+   * Initializes a new instance of the Hero class.
+   *
+   * Loads the hero's images for different states (walking, jumping, hurt, dead, throwing, idle, sleeping)
+   * and applies gravity and animation.
+   *
+   * @return {void}
+   */
   constructor() {
     super().loadImage("img/dinoworld/Hero/Idle (1).png");
     this.loadImages(this.IMAGES_WALKING);
@@ -114,25 +121,33 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Animates the character by continuously updating its position and playing
+   * animations based on user input and the character's state.
+   *
+   * @return {void}
+   */
   animate() {
     setInterval(() => {
-
       if (!this.isDead()) {
-        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+        if (
+          this.world.keyboard.RIGHT &&
+          this.x < this.world.level.level_end_x
+        ) {
           this.moveRight();
           this.otherDirection = false;
-          this.world.soundManager.playSound('run');
+          this.world.soundManager.playSound("run");
         }
 
         if (this.world.keyboard.LEFT && this.x > -360) {
           this.moveLeft();
           this.otherDirection = true;
-          this.world.soundManager.playSound('run');
+          this.world.soundManager.playSound("run");
         }
 
         if (this.world.keyboard.UP && !this.isAboveGround()) {
           this.jump();
-          this.world.soundManager.playSound('jump');
+          this.world.soundManager.playSound("jump");
         }
 
         this.world.cameraX = -this.x + 100;
@@ -145,7 +160,7 @@ class Character extends MovableObject {
 
       if (this.isDead()) {
         if (!this.playedDeathAnimation) {
-          this.world.soundManager.playSound('characterDeath');
+          this.world.soundManager.playSound("characterDeath");
           this.playDeathAnimation();
         }
       } else if (this.isHurt()) {
@@ -168,17 +183,20 @@ class Character extends MovableObject {
     }, 50);
   }
 
+  /**
+   * Plays the death animation for the character.
+   *
+   * @return {void} No return value
+   */
   playDeathAnimation() {
     const intervalId = setInterval(() => {
       if (this.deathAnimationIndex < this.IMAGES_DEAD.length) {
         this.img = this.imageCache[this.IMAGES_DEAD[this.deathAnimationIndex]];
         this.deathAnimationIndex++;
-        
       } else {
         clearInterval(intervalId);
         this.playedDeathAnimation = true;
       }
-    }, 100); 
+    }, 100);
   }
 }
-

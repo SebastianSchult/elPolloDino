@@ -15,6 +15,12 @@ class Tropeognathus extends MovableObject {
         'img/dinoworld/Tropeognathus/PurpleFly (8).png'
     ];
 
+    /**
+ * Initializes a new instance of the Tropeognathus class.
+ *
+ * @constructor
+ * @return {void} This function does not return anything.
+ */
     constructor() {
         super().loadImage('img/dinoworld/Tropeognathus/PurpleFly (1).png');
         this.loadImages(this.IMAGES_WALKING);
@@ -24,6 +30,17 @@ class Tropeognathus extends MovableObject {
         this.animate();
     }
 
+        /**
+     * Animates the object by moving it left and playing walking animations.
+     *
+     * This function sets up two intervals using `setInterval`. The first interval
+     * moves the object to the left by calling the `moveLeft` function and sets
+     * the `otherDirection` property to `true`. The second interval plays a
+     * walking animation by calling the `playAnimation` function with the
+     * `IMAGES_WALKING` array and sets the `otherDirection` property to `true`.
+     *
+     * @return {void} This function does not return anything.
+     */
     animate() {
         setInterval(() => {
             this.moveLeft();

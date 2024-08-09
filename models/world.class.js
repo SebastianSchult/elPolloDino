@@ -16,6 +16,12 @@ class World {
   throwableObjects = [];
   soundManager = new Sounds();
 
+  /**
+   * Initializes a new instance of the World class.
+   *
+   * @param {HTMLCanvasElement} canvas - The canvas element to draw on.
+   * @param {Keyboard} keyboard - The keyboard object to listen for input.
+   */
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -26,10 +32,20 @@ class World {
     this.run();
   }
 
+  /**
+   * Sets the world property of the character object to the current world instance.
+   *
+   * @return {void} This function does not return a value.
+   */
   setWorld() {
     this.character.world = this;
   }
 
+  /**
+   * Runs the function to check collisions and throw objects at a specified interval.
+   *
+   * @return {void} This function does not return a value.
+   */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -37,6 +53,11 @@ class World {
     }, 200);
   }
 
+  /**
+   * Checks for collisions between different objects in the game world at a specified interval.
+   *
+   * @return {void} This function does not return a value.
+   */
   checkCollisions() {
     setStoppableInterval(() => {
       this.checkEnemieCollision();
@@ -48,6 +69,11 @@ class World {
     }, 40);
   }
 
+  /**
+   * Checks if the character has collided with the end boss and applies damage if necessary.
+   *
+   * @return {void} This function does not return a value.
+   */
   checkEndbossHitCharacter() {
     this.level.endboss.forEach((endboss) => {
       if (this.character.isColliding(endboss)) {
@@ -58,6 +84,11 @@ class World {
     });
   }
 
+  /**
+   * Checks for collision between the end boss and throwable objects.
+   *
+   * @return {void}
+   */
   checkEndbossCollision() {
     if (this.collectedBottles > 0) {
       this.throwableObjects = this.throwableObjects.filter((bottle) => {
@@ -75,6 +106,11 @@ class World {
     }
   }
 
+  /**
+   * Checks for collision between throwable bottles and enemies in the level.
+   *
+   * @return {void} This function does not return a value.
+   */
   checkBottleCollisionEnemy() {
     this.throwableObjects.forEach((bottle, index) => {
       this.level.enemies.forEach((enemy) => {
@@ -86,6 +122,13 @@ class World {
     });
   }
 
+  /**
+   * Checks for collision between the character and coins in the level.
+   * If a collision is detected, the coin is removed, a sound is played,
+   * and the collected coins counter is incremented.
+   *
+   * @return {void} This function does not return a value.
+   */
   checkCoinCollision() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
@@ -98,6 +141,13 @@ class World {
     });
   }
 
+  /**
+   * Checks for collision between the character and bottles in the level.
+   * If a collision is detected, the bottle is removed, a sound is played,
+   * and the collected bottles counter is incremented.
+   *
+   * @return {void} This function does not return a value.
+   */
   checkBottleCollision() {
     this.level.bottles = this.level.bottles.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
@@ -110,6 +160,16 @@ class World {
     });
   }
 
+  /**
+   * Checks for collision between the character and enemies in the level.
+   * If a collision is detected, the following actions are taken:
+   * - If the character is above the ground and not hurt, it jumps and the enemy is hit.
+   *   After 500ms, the enemy is removed from the level.
+   * - If the character is not above the ground or is hurt, it is hit and the hurt sound is played.
+   *   The status bar energy is updated.
+   *
+   * @return {void} This function does not return a value.
+   */
   checkEnemieCollision() {
     this.level.enemies.forEach((enemy, index) => {
       if (!enemy.isDead() && this.character.isColliding(enemy)) {
@@ -127,8 +187,14 @@ class World {
       }
     });
   }
-  
 
+  /**
+   * Checks if the player is throwing an object and if there are any bottles collected.
+   * If so, creates a new ThrowableObject and adds it to the throwableObjects array.
+   * Decrements the number of collected bottles and updates the bottlesBar.
+   *
+   * @return {void} This function does not return anything.
+   */
   checkThrowObjects() {
     if (
       this.keyboard.THROW &&
@@ -145,6 +211,14 @@ class World {
     }
   }
 
+  /**
+   * Generates background objects for the game world.
+   *
+   * This function creates a set of background objects by alternating between two sets of images
+   * and offsetting them to create a seamless background.
+   *
+   * @return {void} This function does not return anything.
+   */
   generateBackgroundObjects() {
     const layersBlock1 = [
       "img/dino_background/4/1.png",
@@ -171,6 +245,11 @@ class World {
     }
   }
 
+  /**
+   * Draws the game world on the canvas.
+   *
+   * @return {void} This function does not return anything.
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -204,12 +283,25 @@ class World {
     });
   }
 
+  /**
+   * Adds multiple objects to the map by iterating over the provided objects array.
+   *
+   * @param {Array} objects - An array of objects to be added to the map.
+   * @return {void} This function does not return a value.
+   */
   addObjectsToMap(objects) {
     objects.forEach((object) => {
       this.addToMap(object);
     });
   }
 
+  /**
+   * Adds a movable object to the map, handling its drawing and border rendering.
+   * If the object has an otherDirection property, it will be flipped before and after drawing.
+   *
+   * @param {Object} movableObject - The object to be added to the map.
+   * @return {void} This function does not return a value.
+   */
   addToMap(movableObject) {
     if (movableObject.otherDirection) {
       this.flipImage(movableObject);
@@ -223,6 +315,13 @@ class World {
     }
   }
 
+  /**
+   * Flips the image of a movable object horizontally by translating the context,
+   * scaling it by -1, and updating the object's x coordinate.
+   *
+   * @param {Object} movableObject - The object to be flipped.
+   * @return {void} This function does not return a value.
+   */
   flipImage(movableObject) {
     this.ctx.save();
     this.ctx.translate(movableObject.width, 0);
@@ -230,6 +329,12 @@ class World {
     movableObject.x = movableObject.x * -1;
   }
 
+  /**
+   * Reverts the image of a movable object to its original state by restoring the context and updating the object's x coordinate.
+   *
+   * @param {Object} movableObject - The object whose image is being reverted.
+   * @return {void} This function does not return a value.
+   */
   flipImageBack(movableObject) {
     movableObject.x = movableObject.x * -1;
     this.ctx.restore();

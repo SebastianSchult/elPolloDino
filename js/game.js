@@ -2,15 +2,13 @@ let canvas;
 let world;
 let keyboard = {};
 let intervalIds = [];
-let music = new Audio('audio/locoDinoTheme.mp3');
+let music = new Audio("audio/locoDinoTheme.mp3");
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    keyboard = new Keyboard();
-    window.addEventListener('resize', checkScreenwidth);
-    window.addEventListener('load', checkScreenwidth);
+document.addEventListener("DOMContentLoaded", () => {
+  keyboard = new Keyboard();
+  window.addEventListener("resize", checkScreenwidth);
+  window.addEventListener("load", checkScreenwidth);
 });
-
 
 /**
  * Initializes the game by setting up the canvas, creating a new World object,
@@ -20,17 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
  * @return {void} This function does not return anything.
  */
 function init() {
-canvas = document.getElementById('canvas');
-world = new World(canvas, keyboard);
-activateGameButtons();
-closeInstructions();
-checkScreenwidth();
-document.getElementById('helpButton').classList.add('d-none');
-document.getElementById('restartButtonOverlay').classList.remove('d-none');
-document.getElementById('soundButton').classList.remove('d-none');
-document.getElementById('startButton').classList.add('d-none');
+  canvas = document.getElementById("canvas");
+  world = new World(canvas, keyboard);
+  activateGameButtons();
+  closeInstructions();
+  checkScreenwidth();
+  document.getElementById("helpButton").classList.add("d-none");
+  document.getElementById("restartButtonOverlay").classList.remove("d-none");
+  document.getElementById("soundButton").classList.remove("d-none");
+  document.getElementById("startButton").classList.add("d-none");
 }
-
 
 /**
  * Starts the game by initializing the level with a delay.
@@ -38,62 +35,57 @@ document.getElementById('startButton').classList.add('d-none');
  * @return {void} This function does not return anything.
  */
 function startGame() {
-    initLevelWithDelay();
+  initLevelWithDelay();
 }
-
 
 /**
  * Initializes the level with a delay of 1000 milliseconds.
  *
  * @return {void} This function does not return a value.
  */
-function initLevelWithDelay(){
-    setTimeout(() => {
-        initLevel();
-    }, 1000);
+function initLevelWithDelay() {
+  setTimeout(() => {
+    initLevel();
+  }, 1000);
 }
 
-
 /**
- * Checks the current screen width and updates the visibility of the rotate device message, 
+ * Checks the current screen width and updates the visibility of the rotate device message,
  * rotate device image, and title accordingly.
  *
  * @return {void} This function does not return a value.
  */
 function checkScreenwidth() {
-    if (window.innerWidth <= 650) {
-        document.getElementById("rotateDevice").classList.remove('d-none');
-        document.getElementById("rotateDeviceImage").classList.remove('d-none');
-        document.getElementById("title").classList.add('d-none');
-    } else {
-        document.getElementById("rotateDevice").classList.add('d-none');
-        document.getElementById("rotateDeviceImage").classList.add('d-none');
-        document.getElementById("title").classList.remove('d-none');
-    }
- }
+  if (window.innerWidth <= 650) {
+    document.getElementById("rotateDevice").classList.remove("d-none");
+    document.getElementById("rotateDeviceImage").classList.remove("d-none");
+    document.getElementById("title").classList.add("d-none");
+  } else {
+    document.getElementById("rotateDevice").classList.add("d-none");
+    document.getElementById("rotateDeviceImage").classList.add("d-none");
+    document.getElementById("title").classList.remove("d-none");
+  }
+}
 
-
- /**
+/**
  * Activates the game buttons by removing the 'd-none' class from the 'gameButtons' element.
  *
  * @return {void} This function does not return a value.
  */
- function activateGameButtons(){
-     document.getElementById('gameButtons').classList.remove('d-none');
- }
+function activateGameButtons() {
+  document.getElementById("gameButtons").classList.remove("d-none");
+}
 
-
- /**
+/**
  * Hides the start button, help button, and fullscreen button by adding the 'd-none' class to their respective elements.
  *
  * @return {void} This function does not return a value.
  */
 function buttonsDisable() {
-    document.getElementById('startButton').classList.add('d-none');
-    document.getElementById('helpButton').classList.add('d-none');
-    document.getElementById('fullscreenButton').classList.add('d-none');
+  document.getElementById("startButton").classList.add("d-none");
+  document.getElementById("helpButton").classList.add("d-none");
+  document.getElementById("fullscreenButton").classList.add("d-none");
 }
-
 
 /**
  * Enters the fullscreen mode for the specified element.
@@ -102,10 +94,9 @@ function buttonsDisable() {
  * @return {void} This function does not return a value.
  */
 function fullscreen() {
-    let fullscreen = document.getElementById('fullscreen');
-    enterFullscreen(fullscreen);
+  let fullscreen = document.getElementById("fullscreen");
+  enterFullscreen(fullscreen);
 }
-
 
 /**
  * Toggles the fullscreen mode of the application.
@@ -113,13 +104,12 @@ function fullscreen() {
  * @return {void} This function does not return a value.
  */
 function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        enterFullscreen();
-    } else {
-        exitFullscreen();
-    }
+  if (!document.fullscreenElement) {
+    enterFullscreen();
+  } else {
+    exitFullscreen();
+  }
 }
-
 
 /**
  * Enters the fullscreen mode for the element with the id 'fullscreen' and toggles the visibility of the fullscreen and exit fullscreen buttons.
@@ -127,20 +117,19 @@ function toggleFullscreen() {
  * @return {void} This function does not return a value.
  */
 function enterFullscreen() {
-    const fullscreenElement = document.getElementById('fullscreen');
-    if (fullscreenElement.requestFullscreen) {
-        fullscreenElement.requestFullscreen();
-    } else if (fullscreenElement.mozRequestFullScreen) { 
-        fullscreenElement.mozRequestFullScreen();
-    } else if (fullscreenElement.webkitRequestFullscreen) { 
-        fullscreenElement.webkitRequestFullscreen();
-    } else if (fullscreenElement.msRequestFullscreen) { 
-        fullscreenElement.msRequestFullscreen();
-    }
-    document.getElementById('fullscreenButtonIMG').classList.add('d-none');
-    document.getElementById('exitFullscreenButtonIMG').classList.remove('d-none');
+  const fullscreenElement = document.getElementById("fullscreen");
+  if (fullscreenElement.requestFullscreen) {
+    fullscreenElement.requestFullscreen();
+  } else if (fullscreenElement.mozRequestFullScreen) {
+    fullscreenElement.mozRequestFullScreen();
+  } else if (fullscreenElement.webkitRequestFullscreen) {
+    fullscreenElement.webkitRequestFullscreen();
+  } else if (fullscreenElement.msRequestFullscreen) {
+    fullscreenElement.msRequestFullscreen();
+  }
+  document.getElementById("fullscreenButtonIMG").classList.add("d-none");
+  document.getElementById("exitFullscreenButtonIMG").classList.remove("d-none");
 }
-
 
 /**
  * Exits fullscreen mode if the browser supports it.
@@ -148,46 +137,42 @@ function enterFullscreen() {
  * @return {void} This function does not return anything.
  */
 function exitFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { 
-        document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { 
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { 
-        document.msExitFullscreen();
-    }
-    document.getElementById('fullscreenButtonIMG').classList.remove('d-none');
-    document.getElementById('exitFullscreenButtonIMG').classList.add('d-none');
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+  document.getElementById("fullscreenButtonIMG").classList.remove("d-none");
+  document.getElementById("exitFullscreenButtonIMG").classList.add("d-none");
 }
-
 
 /**
  * Opens the game instructions and buttons by removing the 'd-none' class.
  *
  * @return {void} This function does not return a value.
  */
-function openInstructions() { 
-    document.getElementById('gameInstructions').classList.remove('d-none');
-    document.getElementById('instructions').classList.remove('d-none');
-    document.getElementById('instructionButtons').classList.remove('d-none');
-    document.getElementById('buttons').classList.add('d-none');
-
+function openInstructions() {
+  document.getElementById("gameInstructions").classList.remove("d-none");
+  document.getElementById("instructions").classList.remove("d-none");
+  document.getElementById("instructionButtons").classList.remove("d-none");
+  document.getElementById("buttons").classList.add("d-none");
 }
-
 
 /**
  * Closes the game instructions and buttons by adding the 'd-none' class.
  *
  * @return {void} This function does not return a value.
  */
-function closeInstructions() { 
-    document.getElementById('gameInstructions').classList.add('d-none');
-    document.getElementById('instructions').classList.add('d-none');
-    document.getElementById('instructionButtons').classList.add('d-none');
-    document.getElementById('buttons').classList.remove('d-none');
+function closeInstructions() {
+  document.getElementById("gameInstructions").classList.add("d-none");
+  document.getElementById("instructions").classList.add("d-none");
+  document.getElementById("instructionButtons").classList.add("d-none");
+  document.getElementById("buttons").classList.remove("d-none");
 }
-
 
 /**
  * Opens the keyboard settings and instructions by modifying the visibility of the corresponding elements.
@@ -195,12 +180,11 @@ function closeInstructions() {
  * @return {void} This function does not return a value.
  */
 function openkeyBoardSettings() {
-    document.getElementById('keyboardInstructions').classList.remove('d-none');
-    document.getElementById('homeButton').classList.add('d-none');
-    document.getElementById('keyBoardButton').classList.add('d-none');
-    document.getElementById('backButton').classList.remove('d-none'); 
+  document.getElementById("keyboardInstructions").classList.remove("d-none");
+  document.getElementById("homeButton").classList.add("d-none");
+  document.getElementById("keyBoardButton").classList.add("d-none");
+  document.getElementById("backButton").classList.remove("d-none");
 }
-
 
 /**
  * Closes the keyboard settings and instructions by modifying the visibility of the corresponding elements.
@@ -208,61 +192,57 @@ function openkeyBoardSettings() {
  * @return {void} This function does not return a value.
  */
 function closeKeyBoardSettings() {
-    document.getElementById('keyboardInstructions').classList.add('d-none');
-    document.getElementById('homeButton').classList.remove('d-none');
-    document.getElementById('keyBoardButton').classList.remove('d-none');
-    document.getElementById('backButton').classList.add('d-none');
+  document.getElementById("keyboardInstructions").classList.add("d-none");
+  document.getElementById("homeButton").classList.remove("d-none");
+  document.getElementById("keyBoardButton").classList.remove("d-none");
+  document.getElementById("backButton").classList.add("d-none");
 }
-    
 
+window.addEventListener("keydown", (event) => {
+  if (event.keyCode == 39) {
+    keyboard.RIGHT = true;
+  }
+  if (event.keyCode == 37) {
+    keyboard.LEFT = true;
+  }
+  if (event.keyCode == 38) {
+    keyboard.UP = true;
+  }
+  if (event.keyCode == 40) {
+    keyboard.DOWN = true;
+  }
 
-window.addEventListener('keydown', (event) => {
-    if (event.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-    if (event.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-    if (event.keyCode == 38) {
-        keyboard.UP = true;
-    }
-    if (event.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
+  if (event.keyCode == 32) {
+    keyboard.SPACE = true;
+  }
 
-    if (event.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-
-    if (event.keyCode == 68) {
-        keyboard.THROW = true;
-    }
+  if (event.keyCode == 68) {
+    keyboard.THROW = true;
+  }
 });
 
+window.addEventListener("keyup", (event) => {
+  if (event.keyCode == 39) {
+    keyboard.RIGHT = false;
+  }
+  if (event.keyCode == 37) {
+    keyboard.LEFT = false;
+  }
+  if (event.keyCode == 38) {
+    keyboard.UP = false;
+  }
+  if (event.keyCode == 40) {
+    keyboard.DOWN = false;
+  }
 
-window.addEventListener('keyup', (event) => {
-    if (event.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-    if (event.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-    if (event.keyCode == 38) {
-        keyboard.UP = false;
-    }
-    if (event.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
+  if (event.keyCode == 32) {
+    keyboard.SPACE = false;
+  }
 
-    if (event.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-
-    if (event.keyCode == 68) {
-        keyboard.THROW = false;
-    }
+  if (event.keyCode == 68) {
+    keyboard.THROW = false;
+  }
 });
-
 
 /**
  * Renders an image on a canvas element with the id 'canvas'.
@@ -270,14 +250,13 @@ window.addEventListener('keyup', (event) => {
  * @return {void} This function does not return a value.
  */
 function startScreen() {
-    let ctx = document.getElementById('canvas').getContext('2d');
-    let img = new Image;
-    img.onload = function () {
-        ctx.drawImage(img, 0, 0, 720, 480);
-    };
-    img.src = 'img/dino_background/2/background.png';
+  let ctx = document.getElementById("canvas").getContext("2d");
+  let img = new Image();
+  img.onload = function () {
+    ctx.drawImage(img, 0, 0, 720, 480);
+  };
+  img.src = "img/dino_background/2/background.png";
 }
-    
 
 /**
  * Creates a new interval that can be stopped and stores its ID.
@@ -287,10 +266,9 @@ function startScreen() {
  * @return {void} This function does not return a value.
  */
 function setStoppableInterval(fn, time) {
-    let id = setInterval(fn, time);
-    intervalIds.push(id);
+  let id = setInterval(fn, time);
+  intervalIds.push(id);
 }
-
 
 /**
  * Displays the lost image and shows the restart button.
@@ -298,10 +276,9 @@ function setStoppableInterval(fn, time) {
  * @return {void} This function does not return a value.
  */
 function lostImage() {
-    document.getElementById('lostImage').classList.remove('d-none');
-    showRestartButton();
+  document.getElementById("lostImage").classList.remove("d-none");
+  showRestartButton();
 }
-
 
 /**
  * Displays the won image and shows the restart button.
@@ -309,10 +286,9 @@ function lostImage() {
  * @return {void} This function does not return a value.
  */
 function wonImage() {
-    document.getElementById('winImage').classList.remove('d-none');
-    showRestartButton();
+  document.getElementById("winImage").classList.remove("d-none");
+  showRestartButton();
 }
-
 
 /**
  * Stops all intervals stored in the intervalIds array.
@@ -320,9 +296,8 @@ function wonImage() {
  * @return {void} This function does not return a value.
  */
 function stopGame() {
-    intervalIds.forEach(clearInterval);
+  intervalIds.forEach(clearInterval);
 }
-
 
 /**
  * Shows the restart button by removing the 'd-none' class from the 'restartButtonOverlay' element,
@@ -332,11 +307,10 @@ function stopGame() {
  * @return {void} This function does not return a value.
  */
 function showRestartButton() {
-    document.getElementById('restartButtonOverlay').classList.remove('d-none');
-    document.getElementById('startButton').classList.add('d-none');
-    document.getElementById('fullscreenButton').classList.add('d-none');
+  document.getElementById("restartButtonOverlay").classList.remove("d-none");
+  document.getElementById("startButton").classList.add("d-none");
+  document.getElementById("fullscreenButton").classList.add("d-none");
 }
-
 
 /**
  * Plays the background music.
@@ -344,11 +318,10 @@ function showRestartButton() {
  * @return {void}
  */
 function playBackgroundmusic() {
-    music.play();
-    music.volume = 0.05;
-    music.loop = 'loop';
+  music.play();
+  music.volume = 0.05;
+  music.loop = "loop";
 }
-
 
 /**
  * Stops the background music.
@@ -356,5 +329,5 @@ function playBackgroundmusic() {
  * @return {void} This function does not return a value.
  */
 function stopBackgroundmusic() {
-    music.pause();
+  music.pause();
 }
