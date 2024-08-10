@@ -40,6 +40,22 @@ class Sounds extends MovableObject {
   }
 
   /**
+   * Stops a sound if it is currently playing.
+   *
+   * @param {string} soundKey - The key of the sound to stop.
+   * @return {void}
+   */
+  stopSound(soundKey) {
+    if (this.soundsEnabeled) {
+      const sound = this.sounds[soundKey];
+      if (sound) {
+        sound.pause();
+        sound.currentTime = 0;
+      }
+    }
+  }
+
+  /**
    * Sets the volume of different sounds.
    *
    * @return {void}

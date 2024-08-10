@@ -277,7 +277,10 @@ function setStoppableInterval(fn, time) {
  */
 function lostImage() {
   document.getElementById("lostImage").classList.remove("d-none");
+  document.getElementById("title").classList.add("d-none");
   showRestartButton();
+  this.soundsEnabeled = false;
+  stopGame();
 }
 
 /**
@@ -287,7 +290,10 @@ function lostImage() {
  */
 function wonImage() {
   document.getElementById("winImage").classList.remove("d-none");
+  document.getElementById("title").classList.add("d-none");
   showRestartButton();
+  this.soundsEnabeled = false;
+  stopGame();
 }
 
 /**

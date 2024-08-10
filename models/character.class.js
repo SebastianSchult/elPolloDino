@@ -129,7 +129,6 @@ class Character extends MovableObject {
    */
   animate() {
     setStoppableInterval(() => this.moveCharacter(), 1000 / 60);
-
     setStoppableInterval(() => this.playCharacter(), 50);
   }
 
