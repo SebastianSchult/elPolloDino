@@ -97,29 +97,95 @@ class Endboss extends MovableObject {
    */
   animateEndboss() {
     if (this.isDead()) {
-      if (!this.deadAnimationPlayed) {
-        this.endbossDeathAnimation();
-      }
+      if (!this.deadAnimationPlayed) this.endbossDeathAnimation();
       return;
     }
-    if (this.animationIndex < 10) {
-      this.playAnimation(this.IMAGES_IDLE);
-      this.otherDirection = true;
-    } else if (this.animationIndex >= 10 && this.animationIndex < 20) {
-      this.playAnimation(this.IMAGES_WALKING);
-      this.otherDirection = true;
-    } else if (this.animationIndex >= 20 && this.animationIndex < 30) {
-      this.playAnimation(this.IMAGES_ATTACK);
-      this.otherDirection = true;
-    } else {
+    if (this.endbossIdleAnimation()) {
+      this.idleAnimation();
+    } else if (this.endbossWalkingAnimation()) this.walkingAnimation();
+    else if (this.enbossAttackAnimation()) this.attackAnimation();
+    else {
       this.animationIndex = 0;
     }
     this.animationIndex++;
 
-    if (world.character.x > 2400 && !this.hadFirstContact) {
-      this.hadFirstContact = true;
-      this.animationIndex = 0;
+    if (this.firstContact()) {
+      this.isFirstContact();
     }
+  }
+
+  /**
+   * Checks if the character has reached the first contact point with the endboss.
+   *
+   * @return {boolean} True if the character has reached the first contact point and has not had first contact yet, false otherwise.
+   */
+  firstContact() {
+    return world.character.x > 2400 && !this.hadFirstContact;
+  }
+
+  /**
+   * Sets the hadFirstContact flag to true and resets the animation index.
+   *
+   * @return {void} No return value.
+   */
+  isFirstContact() {
+    this.hadFirstContact = true;
+    this.animationIndex = 0;
+  }
+
+  /**
+   * Checks if the endboss is in the attack animation state.
+   *
+   * @return {boolean} True if the endboss is in the attack animation state, false otherwise.
+   */
+  enbossAttackAnimation() {
+    return this.animationIndex >= 20 && this.animationIndex < 30;
+  }
+
+  /**
+   * A description of the entire function.
+   *
+   */
+  attackAnimation() {
+    this.playAnimation(this.IMAGES_ATTACK);
+    this.otherDirection = true;
+  }
+
+  /**
+   * Checks if the endboss is in the walking animation state.
+   *
+   * @return {boolean} True if the endboss is in the walking animation state, false otherwise.
+   */
+  endbossWalkingAnimation() {
+    return this.animationIndex >= 10 && this.animationIndex < 20;
+  }
+
+  /**
+   * A description of the entire function.
+   *
+   */
+  walkingAnimation() {
+    this.playAnimation(this.IMAGES_WALKING);
+    this.otherDirection = true;
+  }
+
+  /**
+   * Checks if the end boss is in idle animation state.
+   *
+   * @return {boolean} true if the end boss is in idle animation state, false otherwise
+   */
+  endbossIdleAnimation() {
+    return this.animationIndex < 10;
+  }
+
+  /**
+   * Plays the idle animation of the endboss and sets the otherDirection flag to true.
+   *
+   * @return {void} No return value.
+   */
+  idleAnimation() {
+    this.playAnimation(this.IMAGES_IDLE);
+    this.otherDirection = true;
   }
 
   /**

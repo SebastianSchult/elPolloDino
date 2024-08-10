@@ -119,10 +119,10 @@ class World {
    */
   enbossHit() {
     this.soundManager.playSound("endboss");
-          this.soundManager.playSound("glass");
-          this.endbossEnergy--;
-          this.level.endboss[0].hit();
-          this.statusBarEndboss.setPercentage(this.endbossEnergy);
+    this.soundManager.playSound("glass");
+    this.endbossEnergy--;
+    this.level.endboss[0].hit();
+    this.statusBarEndboss.setPercentage(this.endbossEnergy);
   }
 
   /**
@@ -151,14 +151,14 @@ class World {
   checkCoinCollision() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
-       this.charCoinCollision();
+        this.charCoinCollision();
         return false;
       }
       return true;
     });
   }
 
-    /**
+  /**
    * Handles the collision between the character and a coin, playing a sound and updating the collected coins counter.
    *
    * @return {void} This function does not return a value.
@@ -285,10 +285,18 @@ class World {
    */
   generateBackgroundObjects() {
     const layersBlock1 = [
-      "img/dino_background/4/1.png", "img/dino_background/4/2.png", "img/dino_background/4/3.png", "img/dino_background/4/4.png", "img/dino_background/4/5.png",
+      "img/dino_background/4/1.png",
+      "img/dino_background/4/2.png",
+      "img/dino_background/4/3.png",
+      "img/dino_background/4/4.png",
+      "img/dino_background/4/5.png",
     ];
     const layersBlock2 = [
-      "img/dino_background/4/1.png", "img/dino_background/4/2.png", "img/dino_background/4/3.png","img/dino_background/4/4.png", "img/dino_background/4/5.png",
+      "img/dino_background/4/1.png",
+      "img/dino_background/4/2.png",
+      "img/dino_background/4/3.png",
+      "img/dino_background/4/4.png",
+      "img/dino_background/4/5.png",
     ];
 
     for (let i = -1; i < 5; i++) {
@@ -299,8 +307,6 @@ class World {
       }
     }
   }
-
-  
 
   /**
    * Draws the game world on the canvas.
@@ -317,17 +323,17 @@ class World {
     });
   }
 
-/**
- * Clears the canvas and draws the background objects on the game world.
- *
- * This function clears the canvas using the `clearRect` method of the `ctx` context.
- * Then it translates the context by the `cameraX` value to move the background objects
- * to the correct position. It calls the `addObjectsToMap` method to add the `backgroundObjects`,
- * `clouds`, and `tropeognathus` objects to the game world. Finally, it translates the context
- * back by the `cameraX` value to restore the original position.
- *
- * @return {void} This function does not return anything.
- */
+  /**
+   * Clears the canvas and draws the background objects on the game world.
+   *
+   * This function clears the canvas using the `clearRect` method of the `ctx` context.
+   * Then it translates the context by the `cameraX` value to move the background objects
+   * to the correct position. It calls the `addObjectsToMap` method to add the `backgroundObjects`,
+   * `clouds`, and `tropeognathus` objects to the game world. Finally, it translates the context
+   * back by the `cameraX` value to restore the original position.
+   *
+   * @return {void} This function does not return anything.
+   */
   backgroundDraw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.cameraX, 0);
@@ -337,7 +343,7 @@ class World {
     this.ctx.translate(-this.cameraX, 0);
   }
 
-   /**
+  /**
    * Draws the status bar elements on the canvas.
    *
    * @return {void} This function does not return anything.
