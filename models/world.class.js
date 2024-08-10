@@ -92,18 +92,37 @@ class World {
   checkEndbossCollision() {
     if (this.collectedBottles > 0) {
       this.throwableObjects = this.throwableObjects.filter((bottle) => {
-        if (this.level.endboss[0].isColliding(bottle)) {
-          this.soundManager.playSound("endboss");
-          this.soundManager.playSound("glass");
-          this.endbossEnergy--;
-          this.level.endboss[0].hit();
-          this.statusBarEndboss.setPercentage(this.endbossEnergy);
+        if (this.endbossisCollidingBottle(bottle)) {
+          this.enbossHit();
           return false;
         } else {
           return true;
         }
       });
     }
+  }
+
+  /**
+   * Checks if the endboss is colliding with a given bottle.
+   *
+   * @param {object} bottle - The bottle object to check for collision.
+   * @return {boolean} True if the endboss is colliding with the bottle, false otherwise.
+   */
+  endbossisCollidingBottle(bottle) {
+    return this.level.endboss[0].isColliding(bottle);
+  }
+
+  /**
+   * Handles the logic when the endboss is hit by a throwable object.
+   *
+   * @return {void} This function does not return a value.
+   */
+  enbossHit() {
+    this.soundManager.playSound("endboss");
+          this.soundManager.playSound("glass");
+          this.endbossEnergy--;
+          this.level.endboss[0].hit();
+          this.statusBarEndboss.setPercentage(this.endbossEnergy);
   }
 
   /**
@@ -181,7 +200,7 @@ class World {
     });
   }
 
-    /**
+  /**
    * Checks if the enemy is not dead and colliding with the character.
    *
    * @param {Object} enemy - The enemy object to check collision with.
@@ -191,7 +210,7 @@ class World {
     return !enemy.isDead() && this.character.isColliding(enemy);
   }
 
-    /**
+  /**
    * Checks if the character is above ground and not hurt.
    *
    * @return {boolean} true if the character is above ground and not hurt, false otherwise
@@ -200,7 +219,7 @@ class World {
     return this.character.isAboveGround() && !this.character.isHurt();
   }
 
-    /**
+  /**
    * Handles the character hitting an enemy.
    *
    * @param {Object} enemy - The enemy object that was hit.
@@ -257,19 +276,10 @@ class World {
    */
   generateBackgroundObjects() {
     const layersBlock1 = [
-      "img/dino_background/4/1.png",
-      "img/dino_background/4/2.png",
-      "img/dino_background/4/3.png",
-      "img/dino_background/4/4.png",
-      "img/dino_background/4/5.png",
+      "img/dino_background/4/1.png", "img/dino_background/4/2.png", "img/dino_background/4/3.png", "img/dino_background/4/4.png", "img/dino_background/4/5.png",
     ];
-
     const layersBlock2 = [
-      "img/dino_background/4/1.png",
-      "img/dino_background/4/2.png",
-      "img/dino_background/4/3.png",
-      "img/dino_background/4/4.png",
-      "img/dino_background/4/5.png",
+      "img/dino_background/4/1.png", "img/dino_background/4/2.png", "img/dino_background/4/3.png","img/dino_background/4/4.png", "img/dino_background/4/5.png",
     ];
 
     for (let i = -1; i < 5; i++) {
@@ -281,24 +291,62 @@ class World {
     }
   }
 
+  
+
   /**
    * Draws the game world on the canvas.
    *
    * @return {void} This function does not return anything.
    */
   draw() {
+    this.backgroundDraw();
+    this.statusBarDraw();
+    this.movableObjectsDraw();
+    let self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
+
+/**
+ * Clears the canvas and draws the background objects on the game world.
+ *
+ * This function clears the canvas using the `clearRect` method of the `ctx` context.
+ * Then it translates the context by the `cameraX` value to move the background objects
+ * to the correct position. It calls the `addObjectsToMap` method to add the `backgroundObjects`,
+ * `clouds`, and `tropeognathus` objects to the game world. Finally, it translates the context
+ * back by the `cameraX` value to restore the original position.
+ *
+ * @return {void} This function does not return anything.
+ */
+  backgroundDraw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.cameraX, 0);
     this.addObjectsToMap(this.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.tropeognathus);
     this.ctx.translate(-this.cameraX, 0);
-    // ----- Space for fixed Objects -----
+  }
+
+   /**
+   * Draws the status bar elements on the canvas.
+   *
+   * @return {void} This function does not return anything.
+   */
+  statusBarDraw() {
     this.addToMap(this.statusBar);
     this.addToMap(this.bottlesBar);
     this.addToMap(this.coinsBar);
     this.addToMap(this.statusBarEndboss);
     this.ctx.translate(this.cameraX, 0);
+  }
+
+  /**
+   * Draws the movable objects on the canvas by adding them to the map.
+   *
+   * @return {void} This function does not return anything.
+   */
+  movableObjectsDraw() {
     this.addObjectsToMap(this.throwableObjects);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
@@ -306,10 +354,6 @@ class World {
     this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.level.coins);
     this.ctx.translate(-this.cameraX, 0);
-    let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
   }
 
   /**
@@ -332,12 +376,10 @@ class World {
    * @return {void} This function does not return a value.
    */
   addToMap(movableObject) {
-    if (movableObject.otherDirection) 
-    this.flipImage(movableObject);
+    if (movableObject.otherDirection) this.flipImage(movableObject);
     movableObject.draw(this.ctx);
     movableObject.drawBorder(this.ctx);
     if (movableObject.otherDirection) this.flipImageBack(movableObject);
-    
   }
 
   /**
