@@ -81,14 +81,14 @@ class Keyboard {
         });
 
         btn.addEventListener(
-          "touchstart",
-          (e) => {
-            img.src = activeImgSrc;
-            this[direction] = true;
-            e.preventDefault(); 
-          },
-          { passive: true }
-        );
+            "touchstart",
+            (e) => {
+              img.src = activeImgSrc;
+              this[direction] = true;
+              // e.preventDefault(); // Entfernt, da es in einem passiven Listener nicht erlaubt ist
+            },
+            { passive: true }
+          );
 
         btn.addEventListener("touchend", () => {
           img.src = defaultImgSrc;

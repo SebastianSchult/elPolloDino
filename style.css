@@ -569,6 +569,14 @@ canvas {
     canvas {
         width: 100svw;
     }
+    
+}
+
+@media only screen and (min-width: 720px) {
+    #gameButtons {
+        display: none;
+    }
+    
 }
 
 
