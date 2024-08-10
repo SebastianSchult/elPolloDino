@@ -11,6 +11,8 @@ function initLevel() {
         [
         new Chicken(),  
         new Chicken(),
+        new Chicken(), 
+        new Stegosaurus(),
         new Stegosaurus(),
         new Stegosaurus(),
         ],
