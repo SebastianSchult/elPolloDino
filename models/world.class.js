@@ -151,13 +151,22 @@ class World {
   checkCoinCollision() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
-        this.soundManager.playSound("coin");
-        this.collectedCoins++;
-        this.coinsBar.setPercentage(this.collectedCoins);
+       this.charCoinCollision();
         return false;
       }
       return true;
     });
+  }
+
+    /**
+   * Handles the collision between the character and a coin, playing a sound and updating the collected coins counter.
+   *
+   * @return {void} This function does not return a value.
+   */
+  charCoinCollision() {
+    this.soundManager.playSound("coin");
+    this.collectedCoins++;
+    this.coinsBar.setPercentage(this.collectedCoins);
   }
 
   /**
