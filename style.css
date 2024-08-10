@@ -481,9 +481,88 @@ canvas {
     z-index: 54;
 }
 
+#privacyPolicy {
+    background-color: #F7C074;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    margin: 0;
+    height: 100%;
+    width: 100%; 
+    overflow-y: auto;
+    overflow-x: visible;
+    padding: 16px;
+}
+    
+#privacyPolicy p {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0;
+}  
 
-    
-    
+
+#privacyPolicy h1 {
+    font-size: 32px;
+    margin: 0;
+}
+
+#privacyPolicy h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+#privacyPolicy h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+#privacyPolicy span {
+    max-width: 90%;
+}
+
+#privacyPolicyButton {
+    position: absolute;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    background-size: cover;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+    background-image: url("img/buttons/Exit (1).png" );
+    z-index: 52;
+    right: 10%;
+}
+
+#privacyPolicyButton:hover {
+    background-image: url("img/buttons/Exit (2).png");
+}
+
+.legals {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 5%;
+    font-size: 32px;
+    color: white;
+    gap: 24px;
+}
+
+.legals a {
+    color: white;
+    text-decoration: none;
+}
+
+.legals a:hover {
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    color: #F7C074;
+    transform: scale(1.2);
+}
+
 
 /* Smartphones ----- */
 @media only screen and (max-width: 720px) {

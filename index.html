@@ -30,7 +30,10 @@
     <script src="./js/game.js"></script>
   </head>
   <body onload="startScreen()">
-    <h2 id="rotateDevice" class="d-none">To play rotate <br> your device!</h2>
+    <h2 id="rotateDevice" class="d-none">
+      To play rotate <br />
+      your device!
+    </h2>
     <img
       src="img/rotateDevice.jpeg"
       id="rotateDeviceImage"
@@ -41,13 +44,26 @@
     <h1 id="title">El Loco Dino</h1>
     <div id="fullscreen">
       <div class="lostImage" width="720" height="480px">
-        <img id="lostImage" class="d-none" width="720" height="480px" src="img/dinoworld/lostImage.jpeg" alt="">
+        <img
+          id="lostImage"
+          class="d-none"
+          width="720"
+          height="480px"
+          src="img/dinoworld/lostImage.jpeg"
+          alt=""
+        />
       </div>
       <div class="winImage" width="720" height="480px">
-        <img id="winImage" class="d-none" width="720" height="480px" src="img/dinoworld/inImage.jpeg" alt="">
+        <img
+          id="winImage"
+          class="d-none"
+          width="720"
+          height="480px"
+          src="img/dinoworld/inImage.jpeg"
+          alt=""
+        />
       </div>
-      
-     
+
       <div id="gameInstructions" class="gameInstructions d-none">
         <div class="instructions d-none" id="instructions">
           This is the 2D Jump & Run story of Mina and her dinosaur park. The
@@ -146,15 +162,35 @@
             alt=""
           />
         </button>
-        <button id="restartButtonOverlay" class="restartButtonOverlay d-none" onclick="location.reload()"></button>
-        <button id="soundButton" class="soundButton d-none" onclick="world.soundManager.toggleSound()" >
-          <img src="img/buttons/sound_mute.png" id="soundButtonMute" onclick="playBackgroundmusic()" />
-          <img src="img/buttons/sound_on.png" id="soundButtonUnmute" onclick="stopBackgroundmusic()" class="d-none" alt="" />
-            
-        
+        <button
+          id="restartButtonOverlay"
+          class="restartButtonOverlay d-none"
+          onclick="location.reload()"
+        ></button>
+        <button
+          id="soundButton"
+          class="soundButton d-none"
+          onclick="world.soundManager.toggleSound()"
+        >
+          <img
+            src="img/buttons/sound_mute.png"
+            id="soundButtonMute"
+            onclick="playBackgroundmusic()"
+          />
+          <img
+            src="img/buttons/sound_on.png"
+            id="soundButtonUnmute"
+            onclick="stopBackgroundmusic()"
+            class="d-none"
+            alt=""
+          />
         </button>
-         
       </div>
     </div>
+   
   </body>
+  <div class=legals>
+    <a href="privacy.html" target="_blank">PRIVACY-POLICY</a>
+    <a href="legal_notice.html" target="_blank">LEGAL NOTICE</a>
+  </div>
 </html>

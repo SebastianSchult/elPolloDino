@@ -44,7 +44,7 @@ class Keyboard {
       "mobileGameButtonImageThrow",
       "img/buttons/RightArrow (1).png",
       "img/buttons/RightArrow (2).png",
-      "D"
+      "THROW"
     );
   }
 
