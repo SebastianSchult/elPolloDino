@@ -313,7 +313,6 @@ function removeLostImage() {
 function wonImage() {
   document.getElementById("winImage").classList.remove("d-none");
   document.getElementById("title").classList.add("d-none");
-  document.
   showRestartButton();
   this.soundsEnabeled = false;
   stopGame();
