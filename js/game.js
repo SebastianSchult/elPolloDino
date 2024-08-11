@@ -38,6 +38,13 @@ function startGame() {
   initLevelWithDelay();
 }
 
+function restartGame() {
+location.reload();
+startGame();
+
+}
+
+
 /**
  * Initializes the level with a delay of 1000 milliseconds.
  *
