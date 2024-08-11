@@ -591,11 +591,16 @@ canvas {
     
 }
 
-@media only screen and (min-width: 1366px) {
+@media (pointer: coarse) {
+    #gameButtons {
+        display: flex;
+    }
+}
+
+@media (pointer: fine) {
     #gameButtons {
         display: none;
     }
-    
 }
 
 
