@@ -108,7 +108,8 @@
         </div>
       </div>
 
-      <canvas id="canvas" class="canvas" width="720" height="480"></canvas>
+      <canvas id="canvas" class="canvas" width="720" height="480">
+      </canvas>
       <div id="gameButtons" class="game-Buttons d-none">
         <div class="buttonSmallContainer">
           <div id="btnLeft" class="buttonContainer">
@@ -166,6 +167,11 @@
           id="restartButtonOverlay"
           class="restartButtonOverlay d-none"
           onclick="restartGame()"
+        ></button>
+        <button
+          id="homeButtonOverlay"
+          class="homeButtonOverlay d-none"
+          onclick="location.reload()"
         ></button>
         <button
           id="soundButton"

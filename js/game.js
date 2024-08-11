@@ -27,6 +27,8 @@ function init() {
   document.getElementById("restartButtonOverlay").classList.remove("d-none");
   document.getElementById("soundButton").classList.remove("d-none");
   document.getElementById("startButton").classList.add("d-none");
+  document.getElementById("homeButtonOverlay").classList.remove("d-none");
+
 }
 
 /**
@@ -53,6 +55,10 @@ function initLevelWithDelay() {
   setTimeout(() => {
     initLevel();
   }, 1000);
+}
+
+function loadingAnimation() {
+  
 }
 
 /**
@@ -307,6 +313,7 @@ function removeLostImage() {
 function wonImage() {
   document.getElementById("winImage").classList.remove("d-none");
   document.getElementById("title").classList.add("d-none");
+  document.
   showRestartButton();
   this.soundsEnabeled = false;
   stopGame();

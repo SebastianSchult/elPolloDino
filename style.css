@@ -247,6 +247,8 @@ canvas {
     justify-content: center;
     align-items: center;
     z-index: 21;
+    padding: 12px;
+    gap: 8px;
 }
 
 .instructionButtons {
@@ -256,7 +258,7 @@ canvas {
     position: absolute;
     justify-content: space-between;
     align-items: center;
-    bottom: 5%;
+    bottom: 16%;
     height: 64px;
 }
     
@@ -265,7 +267,6 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 16px;
     padding: 12px 24px;
     cursor: pointer;
     z-index: 1;
@@ -286,7 +287,6 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 16px;
     padding: 12px 24px;
     cursor: pointer;
     z-index: 1;
@@ -309,7 +309,6 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 16px;
     padding: 12px 24px;
     cursor: pointer;
     z-index: 1;
@@ -328,7 +327,6 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 16px;
     padding: 12px 24px;
     cursor: pointer;
     z-index: 3;
@@ -452,13 +450,33 @@ canvas {
     z-index: 20;
 }
 
+.homeButtonOverlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    background-size: cover;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+    background-image: url("img/buttons/Home\ \(1\).png" );
+    z-index: 52;
+}
+
+.homeButtonOverlay:hover {
+    background-image: url("img/buttons/Home\ \(2\).png");
+}
+
 .soundButton {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 12px 24px;
-    margin: 16px;
     padding: 12px 24px;
     cursor: pointer;
     background: transparent;
