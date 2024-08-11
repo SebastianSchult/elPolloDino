@@ -39,9 +39,8 @@ function startGame() {
 }
 
 function restartGame() {
-location.reload();
+removeImagesToRestart();
 startGame();
-
 }
 
 
@@ -291,6 +290,16 @@ function lostImage() {
 }
 
 /**
+ * Hides the lost image and shows the title element.
+ *
+ * @return {void} This function does not return a value.
+ */
+function removeLostImage() {
+  document.getElementById("lostImage").classList.add("d-none");
+  document.getElementById("title").classList.remove("d-none");
+}
+
+/**
  * Displays the won image and shows the restart button.
  *
  * @return {void} This function does not return a value.
@@ -304,12 +313,41 @@ function wonImage() {
 }
 
 /**
+ * Hides the won image and shows the title element.
+ *
+ * @return {void} This function does not return a value.
+ */
+function removeWonImage() {
+  document.getElementById("winImage").classList.add("d-none");
+  document.getElementById("title").classList.remove("d-none");
+}
+
+/**
+ * Removes the lost image and won image from the DOM, and restores the title element.
+ *
+ * @return {void} This function does not return a value.
+ */
+function removeImagesToRestart() {
+removeLostImage();
+removeWonImage();
+}
+
+/**
  * Stops all intervals stored in the intervalIds array.
  *
  * @return {void} This function does not return a value.
  */
 function stopGame() {
-  intervalIds.forEach(clearInterval);
+  clearAllIntervals();
+}
+
+/**
+ * Clears all intervals currently set on the window object.
+ *
+ * @return {void} This function does not return a value.
+ */
+function clearAllIntervals() {
+  for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 /**
@@ -322,7 +360,7 @@ function stopGame() {
 function showRestartButton() {
   document.getElementById("restartButtonOverlay").classList.remove("d-none");
   document.getElementById("startButton").classList.add("d-none");
-  document.getElementById("fullscreenButton").classList.add("d-none");
+  //document.getElementById("fullscreenButton").classList.add("d-none");
 }
 
 /**
