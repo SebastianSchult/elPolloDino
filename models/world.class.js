@@ -235,10 +235,19 @@ class World {
    * @param {number} index - The index of the enemy in the level's enemies array.
    * @return {void} This function does not return a value.
    */
-  charHitsEnemy(enemy, index) {
+  /*charHitsEnemy(enemy, index) {
     this.character.jump(10);
     enemy.hit();
     setTimeout(() => this.level.enemies.splice(index, 1), 500);
+  }*/
+
+  charHitsEnemy(enemy) {
+    this.character.jump(10);
+    enemy.hit();
+    setTimeout(() => {
+    let index = this.level.enemies.indexOf(enemy);
+    this.level.enemies.splice(index, 1);
+    }, 500);
   }
 
   /**
